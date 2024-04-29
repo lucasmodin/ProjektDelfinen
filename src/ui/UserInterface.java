@@ -101,7 +101,7 @@ public class UserInterface {
 
     //changes!!!
     public void searchClubMembers(){
-        System.out.println("Indtast navnet på bruger du ønseker at se");
+        System.out.println("Indtast navnet på bruger du ønsker at se");
         String userCoice = input.nextLine();
         if(controller.searchClubMembers(userCoice).isEmpty()){
             System.out.println("Der findes ingen bruger med det navn");
@@ -122,4 +122,17 @@ public class UserInterface {
         }
         input.nextLine();
     }
+
+    //changes!!!
+//    public void editClubMembers(){
+//        System.out.println("Indtast navnet på bruger du vil redigere:");
+//        String userChoice = input.nextLine();
+//        if(controller.searchClubMembers(userChoice).isEmpty()){
+//            System.out.println("Der findes ingen bruger med det navn");
+//        } else {
+//            controller.findMember(userChoice);
+//            System.out.println("Du har valgt: " + controller.findMember(userChoice).getName());
+//
+//        }
+//    }
 }
