@@ -30,12 +30,12 @@ public class UserInterface {
                 case "2" -> createMember();
                 case "3" -> getClubMembers();
                 case "4" -> removeClubMembers();
-                case "5" -> System.out.println("Mangler");
+                case "5" -> editClubMembers();
                 case "6" -> System.out.println("Mangler");
                 case "7" -> System.out.println("Mangler");
                 case "8" -> System.out.println("Mangler");
                 case "9" -> System.out.println("Mangler");
-                case "10" -> System.out.println("Lukker ned...");
+                case "10" -> System.out.println("\tLukker ned...");
             }
 
         }
@@ -86,6 +86,7 @@ public class UserInterface {
         System.out.println("Indtast om bruger vil være aktiv eller passiv(a/p):");
         boolean isActive = input.next().equalsIgnoreCase("a");
         controller.addMember(new Member(name, age, isActive));
+        input.nextLine();
     }
 
     //changes!!!
@@ -124,15 +125,34 @@ public class UserInterface {
     }
 
     //changes!!!
-//    public void editClubMembers(){
-//        System.out.println("Indtast navnet på bruger du vil redigere:");
-//        String userChoice = input.nextLine();
-//        if(controller.searchClubMembers(userChoice).isEmpty()){
-//            System.out.println("Der findes ingen bruger med det navn");
-//        } else {
-//            controller.findMember(userChoice);
-//            System.out.println("Du har valgt: " + controller.findMember(userChoice).getName());
-//
-//        }
-//    }
+    public void editClubMembers(){
+        System.out.println("Indtast navnet på bruger du vil redigere:");
+        String userChoice = input.nextLine();
+        if(controller.searchClubMembers(userChoice).isEmpty()){
+            System.out.println("Der findes ingen bruger med det navn");
+        } else {
+            Member member = controller.findMember(userChoice);
+            System.out.println("Du har valgt: " + member.getName());
+            System.out.println("Vælg hvad du vil ændre");
+            System.out.println("1. Navn");
+            System.out.println("2. Alder");
+            System.out.println("3. Aktiv/Passiv");
+            System.out.println("4. Ændre alt");
+            userChoice = input.nextLine();
+            switch (userChoice){
+                case "1" -> member.setName(input.nextLine());
+                case "2" -> member.setAge(input.nextInt());
+                case "3" -> member.setActive(input.next().equalsIgnoreCase("a"));
+                case "4" -> {
+                    System.out.println("Indtast navn på bruger:");
+                    member.setName(input.nextLine());
+                    System.out.println("Indtast alder på bruger:");
+                    member.setAge(input.nextInt());
+                    System.out.println("Indtast om bruger vil være aktiv eller passiv(a/p):");
+                    member.setActive(input.next().equalsIgnoreCase("a"));
+                }
+            }
+        }
+
+    }
 }
