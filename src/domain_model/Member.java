@@ -39,6 +39,7 @@ public class Member {
         isActive = active;
     }
 
+    //changed!!!
     @Override
     public String toString(){
         String total = "";

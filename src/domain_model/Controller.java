@@ -14,18 +14,21 @@ public class Controller {
         club.addMember(member);
     }
 
+    //changes!!!
     public Club getClubMembers(){
         return club;
     }
-
+    //changes!!!
     public String searchClubMembers(String member){
         return club.searchMembers(member);
     }
 
+    //changes!!!
     public Member findMember(String member){
         return club.findMember(member);
     }
 
+    //changes!!!
     public void removeMember(Member member){
         club.removeMember(member);
     }

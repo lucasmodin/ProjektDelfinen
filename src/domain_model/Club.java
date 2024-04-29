@@ -23,6 +23,7 @@ public class Club {
     }
 
 
+    //changes!!!
     public String searchMembers(String name){
         String total = "";
         for(Member mem : clubMembers){
@@ -33,6 +34,7 @@ public class Club {
         return total;
     }
 
+    //changes!!!
     public Member findMember(String name){
         for (Member mem : clubMembers){
             if(mem.getName().equalsIgnoreCase(name.toLowerCase())){
@@ -41,6 +43,7 @@ public class Club {
         } return null;
     }
 
+    //changes!!!
     @Override
     public String toString(){
         String total = "";
