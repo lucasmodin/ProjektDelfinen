@@ -17,4 +17,12 @@ public class Controller {
     public Club getClubMembers(){
         return club;
     }
+
+    public String searchClubMembers(String member){
+        return club.searchMembers(member);
+    }
+
+    public void removeMember(Member member){
+        club.removeMember(member);
+    }
 }

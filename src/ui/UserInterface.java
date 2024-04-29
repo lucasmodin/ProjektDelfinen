@@ -18,15 +18,15 @@ public class UserInterface {
 
     public void menu(){
         String userChoice = "";
-        while (!userChoice.equals("5")){
+        while (!userChoice.equals("7")){
             printMenu();
             userChoice = input.nextLine();
 
             switch (userChoice){
-                case "1" -> System.out.println();
+                case "1" -> searchClubMembers();
                 case "2" -> createMember();
                 case "3" -> getClubMembers();
-                case "4" -> System.out.println();
+                case "4" -> removeClubMembers();
                 case "5" -> System.out.println("Lukker ned...");
             }
 
@@ -49,8 +49,10 @@ public class UserInterface {
         System.out.println("\t1. Søg efter en bestemt bruger");
         System.out.println("\t2. Opret bruger i systemet");
         System.out.println("\t3. Se liste over alle bruger i systemet");
-        System.out.println("\t4. Få næste års økonomi budget");
-        System.out.println("\t5. Luk programmet ned");
+        System.out.println("\t4. Slet bruger i systemet");
+        System.out.println("\t5. Se bruger der mangler at betale(restance)");
+        System.out.println("\t6. Få næste års økonomi budget");
+        System.out.println("\t7. Luk programmet ned");
     }
 
     public void createMember(){
@@ -67,5 +69,21 @@ public class UserInterface {
         System.out.print("Her er liste over bruger i systemet:");
         System.out.print(controller.getClubMembers());
         input.nextLine();
+    }
+
+    public void searchClubMembers(){
+        System.out.println("Indtast navnet på bruger du ønseker at se");
+        String userCoice = input.nextLine();
+        if(controller.searchClubMembers(userCoice).isEmpty()){
+            System.out.println("Der findes ingen bruger med det navn");
+        } else {
+            System.out.println(controller.searchClubMembers(userCoice));
+        }
+        input.nextLine();
+    }
+
+    public void removeClubMembers(){
+        System.out.println("Angiv hvilken bruger du vil fjerne i systemet:");
+
     }
 }

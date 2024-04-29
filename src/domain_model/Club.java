@@ -22,13 +22,16 @@ public class Club {
         return clubMembers;
     }
 
-//    public String searchMembers(String name){
-//        for(Member mem : clubMembers){
-//            if(mem.getName().toLowerCase().contains(name.toLowerCase())){
-//
-//            }
-//        }
-//    }
+
+    public String searchMembers(String name){
+        String total = "";
+        for(Member mem : clubMembers){
+            if(mem.getName().toLowerCase().contains(name.toLowerCase())){
+                total += mem.toString();
+            }
+        }
+        return total;
+    }
 
     @Override
     public String toString(){
