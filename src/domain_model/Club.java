@@ -33,6 +33,14 @@ public class Club {
         return total;
     }
 
+    public Member findMember(String name){
+        for (Member mem : clubMembers){
+            if(mem.getName().equalsIgnoreCase(name.toLowerCase())){
+                return mem;
+            }
+        } return null;
+    }
+
     @Override
     public String toString(){
         String total = "";

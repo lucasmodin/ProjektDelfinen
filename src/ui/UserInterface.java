@@ -66,8 +66,12 @@ public class UserInterface {
     }
 
     public void getClubMembers(){
-        System.out.print("Her er liste over bruger i systemet:");
-        System.out.print(controller.getClubMembers());
+        if(controller.getClubMembers().getClubMembers().isEmpty()){
+            System.out.println("Listen er tom. Der er ingen bruger i systemet.");
+        } else {
+            System.out.print("Her er liste over bruger i systemet:");
+            System.out.print(controller.getClubMembers());
+        }
         input.nextLine();
     }
 
@@ -84,6 +88,11 @@ public class UserInterface {
 
     public void removeClubMembers(){
         System.out.println("Angiv hvilken bruger du vil fjerne i systemet:");
-
+        String userChoice = input.nextLine();
+        if (controller.searchClubMembers(userChoice).isEmpty()){
+            System.out.println("Der findes ingen bruger med det navn");
+        } else {
+            controller.removeMember(controller.findMember(userChoice));
+        }
     }
 }

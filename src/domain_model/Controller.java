@@ -22,6 +22,10 @@ public class Controller {
         return club.searchMembers(member);
     }
 
+    public Member findMember(String member){
+        return club.findMember(member);
+    }
+
     public void removeMember(Member member){
         club.removeMember(member);
     }
