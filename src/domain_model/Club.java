@@ -22,5 +22,20 @@ public class Club {
         return clubMembers;
     }
 
+//    public String searchMembers(String name){
+//        for(Member mem : clubMembers){
+//            if(mem.getName().toLowerCase().contains(name.toLowerCase())){
+//
+//            }
+//        }
+//    }
 
+    @Override
+    public String toString(){
+        String total = "";
+        for(Member mem : clubMembers){
+            total += "\n" + mem.toString() + "\n";
+        }
+        return total;
+    }
 }

@@ -44,9 +44,9 @@ public class Member {
         String total = "";
         total = "Navn: " + name + "\nAlder: " + age + "\n";
         if(isActive){
-            total = "Medlemskab: Aktiv";
+            total += "Medlemskab: Aktiv";
         } else {
-            total = "Medlemskab: Inaktiv";
+            total += "Medlemskab: Passiv";
         }
         return total;
     }

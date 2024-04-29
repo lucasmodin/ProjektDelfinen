@@ -25,9 +25,9 @@ public class UserInterface {
             switch (userChoice){
                 case "1" -> System.out.println();
                 case "2" -> createMember();
-                case "3" -> getMemberList();
+                case "3" -> getClubMembers();
                 case "4" -> System.out.println();
-                case "5" -> System.out.println("Quitting...");
+                case "5" -> System.out.println("Lukker ned...");
             }
 
         }
@@ -58,12 +58,14 @@ public class UserInterface {
         String name = input.nextLine();
         System.out.println("Indtast alder på bruger:");
         int age = input.nextInt();
-        System.out.println("Indtast om bruger vil være aktiv eller passiv:");
-        boolean isActive = input.next().equalsIgnoreCase("aktiv");
+        System.out.println("Indtast om bruger vil være aktiv eller passiv(a/p):");
+        boolean isActive = input.next().equalsIgnoreCase("a");
         controller.addMember(new Member(name, age, isActive));
     }
 
-    public void getMemberList(){
-
+    public void getClubMembers(){
+        System.out.print("Her er liste over bruger i systemet:");
+        System.out.print(controller.getClubMembers());
+        input.nextLine();
     }
 }

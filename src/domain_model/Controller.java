@@ -13,4 +13,8 @@ public class Controller {
     public void addMember(Member member){
         club.addMember(member);
     }
+
+    public Club getClubMembers(){
+        return club;
+    }
 }
