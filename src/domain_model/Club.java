@@ -21,4 +21,6 @@ public class Club {
     public ArrayList<Member> getClubMembers(){
         return clubMembers;
     }
+
+
 }

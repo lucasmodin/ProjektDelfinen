@@ -9,4 +9,8 @@ public class Controller {
         this.club = new Club();
         this.payment = new Payment(club);
     }
+
+    public void addMember(Member member){
+        club.addMember(member);
+    }
 }
