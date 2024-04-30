@@ -79,13 +79,14 @@ public class UserInterface {
 
     //changes!!!
     public void createMember(){
-        System.out.println("Indtast navn på bruger:");
+        System.out.print("Indtast navn på bruger: ");
         String name = input.nextLine();
-        System.out.println("Indtast alder på bruger:");
+        System.out.print("Indtast alder på bruger: ");
         int age = input.nextInt();
-        System.out.println("Indtast om bruger vil være aktiv eller passiv(a/p):");
+        System.out.print("Indtast om bruger vil være aktiv eller passiv(a/p): ");
         boolean isActive = input.next().equalsIgnoreCase("a");
         controller.addMember(new Member(name, age, isActive));
+        input.nextLine();
         input.nextLine();
     }
 
