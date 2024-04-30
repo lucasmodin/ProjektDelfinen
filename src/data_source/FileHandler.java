@@ -19,22 +19,25 @@ public class FileHandler {
     public FileHandler(){
     }
 
-    public void saveDatabase(MemberCollection collection){
+    public void saveDatabase(Club collection) {
 
-        try{
+        try {
             FileWriter fileWriter = new FileWriter(filePath);
             PrintWriter printWriter = new PrintWriter(fileWriter);
 
-            for (Member member : XXX){
+            for (Member member : collection.getClubMembers()) {
                 printWriter.println("");
-                printWriter.print(member.saveFormat()):
+                if (member instanceof CompetitionMember) {
+                    printWriter.print(member.saveFormat());
+                } else {
+                    printWriter.print(member.saveFormat());
+                }
+                printWriter.close();
             }
-            printWriter.close();
 
-        } catch (IOException e){
-            throw new RuntimeException(e);
-        }
-
+        }catch(IOException e){
+                throw new RuntimeException(e);
+            }
     }
 
 
@@ -54,7 +57,7 @@ public class FileHandler {
             Member memberData = null;
             CompetitionMember competitionMemberData = null;
 
-            if (attributes[?] != null){
+            if (attributes[4] != null){
                 competitionMemberData = new CompetitionMember(
                         attributes[0],
                         Integer.parseInt(attributes[1]),

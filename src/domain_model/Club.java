@@ -1,10 +1,13 @@
 package domain_model;
 
+import data_source.FileHandler;
+
 import java.util.ArrayList;
 
 public class Club {
 
     private ArrayList<Member> clubMembers;
+
 
     public Club (){
         this.clubMembers = new ArrayList<>();

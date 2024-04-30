@@ -54,4 +54,9 @@ public class CompetitionMember extends Member {
         total += "\nBedste tid: " + time + "\nSvømme Diciplin: " + discipline + "\nDato for resultat: " + date;
         return total;
     }
+
+    public String saveFormat() {
+        return getName() + "," + getAge() + isActive() + "," + time + "," + discipline + "," + date;
+    }
+
 }
