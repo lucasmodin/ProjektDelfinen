@@ -44,7 +44,14 @@ public class CompetitionMember extends Member {
 
     @Override
     public String toString(){
-        return "String";
+        String total = "";
+        total = "Navn: " + getName() + "\nAlder: " + getAge() + "\n";
+        if(isActive()){
+            total += "Medlemskab: Aktiv";
+        } else {
+            total += "Medlemskab: Passiv";
+        }
+        total += "\nBedste tid: " + time + "\nSvømme Diciplin: " + discipline + "\nDato for resultat: " + date;
+        return total;
     }
-
 }

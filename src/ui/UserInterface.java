@@ -1,5 +1,6 @@
 package ui;
 
+import domain_model.CompetitionMember;
 import domain_model.Controller;
 import domain_model.Member;
 
@@ -79,15 +80,36 @@ public class UserInterface {
 
     //changes!!!
     public void createMember(){
-        System.out.print("Indtast navn på bruger: ");
-        String name = input.nextLine();
-        System.out.print("Indtast alder på bruger: ");
-        int age = input.nextInt();
-        System.out.print("Indtast om bruger vil være aktiv eller passiv(a/p): ");
-        boolean isActive = input.next().equalsIgnoreCase("a");
-        controller.addMember(new Member(name, age, isActive));
-        input.nextLine();
-        input.nextLine();
+        System.out.println("Vil du oprette en motionist(m) eller en konkurrence svømmer(k)?");
+        String userChoice = input.nextLine();
+        if(userChoice.equals("m")){
+            System.out.print("Indtast navn på bruger: ");
+            String name = input.nextLine();
+            System.out.print("Indtast alder på bruger: ");
+            int age = input.nextInt();
+            System.out.print("Indtast om bruger vil være aktiv eller passiv(a/p): ");
+            boolean isActive = input.next().equalsIgnoreCase("a");
+            controller.addMember(new Member(name, age, isActive));
+            input.nextLine();
+        } else if (userChoice.equals("k")){
+            System.out.print("Indtast navn på bruger: ");
+            String name = input.nextLine();
+            System.out.print("Indtast alder på bruger: ");
+            int age = input.nextInt();
+            System.out.print("Indtast om bruger vil være aktiv eller passiv(a/p): ");
+            boolean isActive = input.next().equalsIgnoreCase("a");
+            System.out.print("Bedste svømme resultat: ");
+            double tid = input.nextDouble();
+            System.out.print("Svømmerens diciplin: ");
+            input.nextLine();
+            String diciplin = input.nextLine();
+            System.out.print("Datoen for resultatet: ");
+            String dato = input.nextLine();
+            controller.addMember(new CompetitionMember(name, age,isActive, tid, diciplin, dato));
+            input.nextLine();
+        } else {
+            System.out.println("forkert input");
+        }
     }
 
     //changes!!!
@@ -134,26 +156,62 @@ public class UserInterface {
         } else {
             Member member = controller.findMember(userChoice);
             System.out.println("Du har valgt: " + member.getName());
-            System.out.println("Vælg hvad du vil ændre");
-            System.out.println("1. Navn");
-            System.out.println("2. Alder");
-            System.out.println("3. Aktiv/Passiv");
-            System.out.println("4. Ændre alt");
-            userChoice = input.nextLine();
-            switch (userChoice){
-                case "1" -> member.setName(input.nextLine());
-                case "2" -> member.setAge(input.nextInt());
-                case "3" -> member.setActive(input.next().equalsIgnoreCase("a"));
-                case "4" -> {
-                    System.out.println("Indtast navn på bruger:");
-                    member.setName(input.nextLine());
-                    System.out.println("Indtast alder på bruger:");
-                    member.setAge(input.nextInt());
-                    System.out.println("Indtast om bruger vil være aktiv eller passiv(a/p):");
-                    member.setActive(input.next().equalsIgnoreCase("a"));
+            if(member instanceof CompetitionMember){
+                System.out.println("Vælg hvad du vil ændre");
+                System.out.println("1. Navn");
+                System.out.println("2. Alder");
+                System.out.println("3. Aktiv/Passiv");
+                System.out.println("4. Tid");
+                System.out.println("5. Diciplin");
+                System.out.println("6. Dato");
+                System.out.println("7. Ændre alt");
+                userChoice = input.nextLine();
+                switch (userChoice) {
+                    case "1" -> member.setName(input.nextLine());
+                    case "2" -> member.setAge(input.nextInt());
+                    case "3" -> member.setActive(input.next().equalsIgnoreCase("a"));
+                    case "4" -> ((CompetitionMember) member).setTime(input.nextDouble());
+                    case "5" -> ((CompetitionMember) member).setDiscipline(input.nextLine());
+                    case "6" -> ((CompetitionMember) member).setDate(input.nextLine());
+                    case "7" -> {
+                        System.out.print("Indtast navn på bruger: ");
+                        member.setName(input.nextLine());
+                        System.out.print("Indtast alder på bruger: ");
+                        member.setAge(input.nextInt());
+                        System.out.print("Indtast om bruger vil være aktiv eller passiv(a/p): ");
+                        member.setActive(input.next().equalsIgnoreCase("a"));
+                        System.out.print("Bedste svømme resultat: ");
+                        ((CompetitionMember) member).setTime(input.nextDouble());
+                        System.out.print("Svømmerens diciplin: ");
+                        input.nextLine();
+                        ((CompetitionMember) member).setDiscipline(input.nextLine());
+                        System.out.print("Datoen for resultatet: ");
+                        ((CompetitionMember) member).setDate(input.nextLine());
+                    }
+                }
+            } else {
+                System.out.println("Vælg hvad du vil ændre");
+                System.out.println("1. Navn");
+                System.out.println("2. Alder");
+                System.out.println("3. Aktiv/Passiv");
+                System.out.println("4. Ændre alt");
+                userChoice = input.nextLine();
+                switch (userChoice) {
+                    case "1" -> member.setName(input.nextLine());
+                    case "2" -> member.setAge(input.nextInt());
+                    case "3" -> member.setActive(input.next().equalsIgnoreCase("a"));
+                    case "4" -> {
+                        System.out.print("Indtast navn på bruger:");
+                        member.setName(input.nextLine());
+                        System.out.print("Indtast alder på bruger:");
+                        member.setAge(input.nextInt());
+                        System.out.print("Indtast om bruger vil være aktiv eller passiv(a/p):");
+                        member.setActive(input.next().equalsIgnoreCase("a"));
+                    }
                 }
             }
         }
 
     }
+
 }

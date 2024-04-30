@@ -28,7 +28,7 @@ public class Club {
         String total = "";
         for(Member mem : clubMembers){
             if(mem.getName().toLowerCase().contains(name.toLowerCase())){
-                total += mem.toString() + "\n";
+                total += "\n" + mem.toString() + "\n";
             }
         }
         return total;
