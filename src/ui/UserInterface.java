@@ -20,6 +20,10 @@ public class UserInterface {
 
     //changes!!!
     public void menu() throws Exception {
+
+        controller.loadDatabase();
+
+
         String userChoice = "";
         printLogo();
         while (!userChoice.equals("10")){
@@ -34,12 +38,14 @@ public class UserInterface {
                 case "5" -> editClubMembers();
                 case "6" -> System.out.println("Mangler");
                 case "7" -> System.out.println("Mangler");
-                case "8" -> System.out.println("Mangler");
+                case "8" -> System.out.println(controller.overViewOfCompetitionMembers());
                 case "9" -> System.out.println("Mangler");
                 case "10" -> System.out.println("\tLukker ned...");
             }
 
         }
+
+        controller.saveDatabse();
     }
 
     //changes!!!
@@ -213,5 +219,7 @@ public class UserInterface {
         }
 
     }
+
+
 
 }

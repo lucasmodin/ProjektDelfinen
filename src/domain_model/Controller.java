@@ -36,4 +36,16 @@ public class Controller {
     public void removeMember(Member member){
         club.removeMember(member);
     }
+
+    public void loadDatabase () {
+        fileHandler.loadedDatabase(club);
+    }
+
+    public void saveDatabse() {
+        fileHandler.saveDatabase(club);
+    }
+
+    public String overViewOfCompetitionMembers(){
+        return club.overViewOfCompetitionMembers();
+    }
 }
