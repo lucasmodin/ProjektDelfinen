@@ -39,8 +39,16 @@ public class Member {
         isActive = active;
     }
 
+    //changed!!!
     @Override
     public String toString(){
-        return "String";
+        String total = "";
+        total = "Navn: " + name + "\nAlder: " + age + "\n";
+        if(isActive){
+            total += "Medlemskab: Aktiv";
+        } else {
+            total += "Medlemskab: Passiv";
+        }
+        return total;
     }
 }

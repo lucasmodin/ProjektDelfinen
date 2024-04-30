@@ -21,4 +21,35 @@ public class Club {
     public ArrayList<Member> getClubMembers(){
         return clubMembers;
     }
+
+
+    //changes!!!
+    public String searchMembers(String name){
+        String total = "";
+        for(Member mem : clubMembers){
+            if(mem.getName().toLowerCase().contains(name.toLowerCase())){
+                total += "\n" + mem.toString() + "\n";
+            }
+        }
+        return total;
+    }
+
+    //changes!!!
+    public Member findMember(String name){
+        for (Member mem : clubMembers){
+            if(mem.getName().equalsIgnoreCase(name.toLowerCase())){
+                return mem;
+            }
+        } return null;
+    }
+
+    //changes!!!
+    @Override
+    public String toString(){
+        String total = "";
+        for(Member mem : clubMembers){
+            total += "\n" + mem.toString() + "\n";
+        }
+        return total;
+    }
 }
