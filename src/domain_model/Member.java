@@ -51,4 +51,8 @@ public class Member {
         }
         return total;
     }
+
+    public String saveFormat() {
+        return name + "," + age + "," + isActive;
+    }
 }

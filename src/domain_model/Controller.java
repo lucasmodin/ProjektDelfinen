@@ -1,13 +1,17 @@
 package domain_model;
 
+import data_source.FileHandler;
+
 public class Controller {
 
     private Club club;
     private Payment payment;
+    private FileHandler fileHandler;
 
     public Controller(){
         this.club = new Club();
         this.payment = new Payment(club);
+        this.fileHandler = new FileHandler();
     }
 
     public void addMember(Member member){
