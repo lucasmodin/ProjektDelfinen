@@ -16,8 +16,6 @@ public class UserInterface {
 
     }
 
-
-
     //changes!!!
     public void menu() throws Exception {
         String userChoice = "";
