@@ -8,7 +8,6 @@ public class Club {
 
     private ArrayList<Member> clubMembers;
 
-
     public Club (){
         this.clubMembers = new ArrayList<>();
     }
@@ -24,7 +23,6 @@ public class Club {
     public ArrayList<Member> getClubMembers(){
         return clubMembers;
     }
-
 
     //changes!!!
     public String searchMembers(String name){
@@ -55,4 +53,16 @@ public class Club {
         }
         return total;
     }
+
+
+    public String overViewOfCompetitionMembers(){
+        String output = "";
+        for (Member member :clubMembers) {
+            if (member instanceof CompetitionMember) {
+                output += "\n" + member.toString() + "\n";
+            }
+        }
+        return output;
+    }
+
 }

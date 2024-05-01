@@ -19,6 +19,11 @@ public class FileHandler {
     public FileHandler(){
     }
 
+
+    public void loadedDatabase(Club club) {
+        club.getClubMembers().addAll(loadDatabase());
+    }
+
     public void saveDatabase(Club collection) {
 
         try {
@@ -32,8 +37,9 @@ public class FileHandler {
                 } else {
                     printWriter.print(member.saveFormat());
                 }
-                printWriter.close();
             }
+
+            printWriter.close();
 
         }catch(IOException e){
                 throw new RuntimeException(e);
@@ -46,7 +52,7 @@ public class FileHandler {
         sc = null;
         try {
             sc = new Scanner(new File (filePath), StandardCharsets.UTF_8);
-            sc.nextLine();
+            sc.nextLine();                                                  //Den her gør man springer først linje over.
         } catch (IOException e){
             throw new RuntimeException(e);
         }
@@ -57,7 +63,7 @@ public class FileHandler {
             Member memberData = null;
             CompetitionMember competitionMemberData = null;
 
-            if (attributes[4] != null){
+            if (attributes.length != 3){
                 competitionMemberData = new CompetitionMember(
                         attributes[0],
                         Integer.parseInt(attributes[1]),
@@ -65,7 +71,7 @@ public class FileHandler {
                         Double.parseDouble(attributes[3]),
                         attributes[4],
                         attributes[5]);
-                loadedDatabase.add(memberData);
+                loadedDatabase.add(competitionMemberData);
             } else {
                 memberData = new Member(
                 attributes[0],

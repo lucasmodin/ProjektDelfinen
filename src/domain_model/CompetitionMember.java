@@ -56,7 +56,7 @@ public class CompetitionMember extends Member {
     }
 
     public String saveFormat() {
-        return getName() + "," + getAge() + isActive() + "," + time + "," + discipline + "," + date;
+        return getName() + "," + getAge() + "," + isActive() + "," + time + "," + discipline + "," + date;
     }
 
 }
