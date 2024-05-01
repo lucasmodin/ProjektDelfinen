@@ -7,11 +7,15 @@ public class Member {
     private String name;
     private int age;
     private boolean isActive;
+    private MemberAccount account;
 
     public Member(String name, int age, boolean isActive) {
         this.name = name;
         this.age = age;
         this.isActive = isActive;
+        this.account = new MemberAccount(this);
+        //method to add dues upon creation of a member
+        this.account.addDues();
     }
 
 
@@ -37,6 +41,10 @@ public class Member {
 
     public void setActive(boolean active) {
         isActive = active;
+    }
+
+    public MemberAccount getMemberAccount() {
+        return account;
     }
 
     //changed!!!
