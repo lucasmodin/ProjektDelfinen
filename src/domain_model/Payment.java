@@ -14,7 +14,7 @@ public class Payment {
         double totalExpectedIncome = 0.0;
         for (Member member : club.getClubMembers()){
             MemberAccount account = member.getMemberAccount();
-            if (account.isInGoodStanding()){
+
                 if (member.isActive()) {
                     if (member.getAge() < 18) {
                         totalExpectedIncome += 1000;
@@ -26,9 +26,9 @@ public class Payment {
                 } else {
                     totalExpectedIncome += 500;
                 }
-            }
-        } return totalExpectedIncome;
-    }
+            } return totalExpectedIncome;
+        }
+
 
     public String displayMembersWhoOwe() {
         String result = "";

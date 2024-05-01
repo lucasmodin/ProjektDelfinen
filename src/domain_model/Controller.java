@@ -48,4 +48,12 @@ public class Controller {
     public String overViewOfCompetitionMembers(){
         return club.overViewOfCompetitionMembers();
     }
+
+    public double calculateTotalExpectedIncome() {
+        return payment.calculateTotalExpectedIncome();
+    }
+
+    public String displayMembersWhoOwe() {
+        return payment.displayMembersWhoOwe();
+    }
 }

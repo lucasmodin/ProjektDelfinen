@@ -36,8 +36,8 @@ public class UserInterface {
                 case "3" -> getClubMembers();
                 case "4" -> removeClubMembers();
                 case "5" -> editClubMembers();
-                case "6" -> System.out.println("Mangler");
-                case "7" -> System.out.println("Mangler");
+                case "6" -> showMembersWhoHasntPaid();
+                case "7" -> showTotalIncomeForYear();
                 case "8" -> System.out.println(controller.overViewOfCompetitionMembers());
                 case "9" -> System.out.println("Mangler");
                 case "10" -> System.out.println("\tLukker ned...");
@@ -220,6 +220,14 @@ public class UserInterface {
 
     }
 
+    public void showMembersWhoHasntPaid() {
+        System.out.println("Oversigt over medlemmer der ikke har betalt:  \n");
+        System.out.println(controller.displayMembersWhoOwe());
+    }
 
+    public void showTotalIncomeForYear() {
+        System.out.println("Oversigt over forventet indkomst for næste år: \n");
+        System.out.println(controller.calculateTotalExpectedIncome() + " kr.");
+    }
 
 }
