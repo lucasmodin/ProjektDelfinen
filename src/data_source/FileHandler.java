@@ -38,6 +38,7 @@ public class FileHandler {
                     printWriter.print(member.saveFormat());
                 }
             }
+
             printWriter.close();
 
         }catch(IOException e){
