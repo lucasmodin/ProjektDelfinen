@@ -56,4 +56,17 @@ public class Controller {
     public String displayMembersWhoOwe() {
         return payment.displayMembersWhoOwe();
     }
+
+
+    public void sortingCompetitionMember(){
+        club.sortingCompetitionMember();
+    }
+
+    public void sortingCompetitionMemberOnDiscipline(){
+        club.sortingCompetitionMemberOnDiscipline();
+    }
+
+    public String top5Discipline(){
+        return club.top5Discipline();
+    }
 }

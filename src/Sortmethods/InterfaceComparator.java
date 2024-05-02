@@ -5,5 +5,5 @@ public interface InterfaceComparator {
 
     int getSortTime();
 
-    int getSortDiscipline();
+    String getSortDiscipline();
 }

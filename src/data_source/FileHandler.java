@@ -13,13 +13,19 @@ import java.io.PrintWriter;
 
 
 public class FileHandler {
+
+    //****************** ATTRIBUTES **************************************************//
     String filePath = "DelfyDatabse.csv";
     Scanner sc;
 
+    // ***************** Constructor *********************************************** ///
     public FileHandler(){
     }
 
 
+    /// ******************** Methods to save and toString ***************************////
+
+    // -- Helper methods to get loaded database into system -- //
     public void loadedDatabase(Club club) {
         club.getClubMembers().addAll(loadDatabase());
     }
@@ -45,7 +51,6 @@ public class FileHandler {
                 throw new RuntimeException(e);
             }
     }
-
 
     public ArrayList<Member> loadDatabase() {
         ArrayList<Member> loadedDatabase = new ArrayList<>();

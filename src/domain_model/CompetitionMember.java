@@ -4,14 +4,13 @@ import Sortmethods.InterfaceComparator;
 
 public class CompetitionMember extends Member implements InterfaceComparator {
 
-    // ********************* Attributes *************************//
+    //****************** ATTRIBUTES **************************************************//
 
     private double time;
     private String discipline;
     private String date;
 
-
-
+    // ***************** Constructor *********************************************** ///
     public CompetitionMember(String name, int age, boolean isActive, double time, String discipline, String date) {
         super(name, age, isActive);
         this.time = time;
@@ -19,31 +18,36 @@ public class CompetitionMember extends Member implements InterfaceComparator {
         this.date = date;
     }
 
-
+    /// ************************* Getter methods **********************************////
     public double getTime() {
         return time;
-    }
-
-    public void setTime(double time) {
-        this.time = time;
     }
 
     public String getDiscipline() {
         return discipline;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    /// ************************* Setter methods **********************************////
+
     public void setDiscipline(String discipline) {
         this.discipline = discipline;
     }
 
-    public String getDate() {
-        return date;
+    public void setTime(double time) {
+        this.time = time;
     }
 
     public void setDate(String date) {
         this.date = date;
     }
 
+    /// ******************** Methods to save and toString ***************************////
+
+    // -- Helper methods to get string output -- //
     @Override
     public String toString(){
         String total = "";
@@ -57,9 +61,12 @@ public class CompetitionMember extends Member implements InterfaceComparator {
         return total;
     }
 
+    // -- Helper methods to save file -- //
     public String saveFormat() {
         return getName() + "," + getAge() + "," + isActive() + "," + time + "," + discipline + "," + date;
     }
+
+    /// ************************* Compare methods **********************************////
 
     @Override
     public int getSortTime() {
@@ -68,7 +75,8 @@ public class CompetitionMember extends Member implements InterfaceComparator {
     }
 
     @Override
-    public int getSortDiscipline(){
-        return 0;
+    public String getSortDiscipline(){
+        String results = getDiscipline();
+        return results;
     }
 }

@@ -1,11 +1,13 @@
 package domain_model;
 
+import Sortmethods.InterfaceComparator;
 import Sortmethods.ParameterComparator;
 import data_source.FileHandler;
 
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.List;
 
 public class Club {
 
@@ -60,16 +62,51 @@ public class Club {
 
     public String overViewOfCompetitionMembers(){
         String output = "";
-        ArrayList<CompetitionMember> listsort = new ArrayList<>();
         for (Member member :clubMembers) {
             if (member instanceof CompetitionMember) {
-                listsort.add((CompetitionMember) member);
-
-                // output += "\n" + member.toString() + "\n";
+                output += "\n" + member.toString() + "\n";
             }
         }
-        listsort.sort(Comparator.comparing(CompetitionMember::getTime));
         return output;
+    }
+
+    public void sortingCompetitionMember(){
+        Collections.sort(clubMembers, new Comparator<InterfaceComparator>() {
+            @Override
+            public int compare(InterfaceComparator o1, InterfaceComparator o2) {
+                return o2.getSortTime() - o1.getSortTime();
+            }
+        });
+    }
+
+    public void sortingCompetitionMemberOnDiscipline() {
+        Collections.sort(clubMembers, new Comparator<InterfaceComparator>() {
+            @Override
+            public int compare(InterfaceComparator o1, InterfaceComparator o2) {
+                return o1.getSortDiscipline().compareTo(o2.getSortDiscipline());
+            }
+        });
+    }
+
+    public String top5Discipline(){             // sortClubMembers
+        sortingCompetitionMember();
+        ArrayList<CompetitionMember> top5 = new ArrayList<>();
+        String output = "";
+            for(Member member: clubMembers) {
+                if (member instanceof CompetitionMember) {
+                    top5.add((CompetitionMember) member);
+                }
+            }
+
+        for(int i = 0; i <= 3; i++){
+            output += "\n" + top5.get(i).toString() + "\n";
+        }
+
+        return output;
+    }
+
+    public void sortClubMembers(){
+        clubMembers.sort(Comparator.comparing(Member::getAge));
     }
 
 }

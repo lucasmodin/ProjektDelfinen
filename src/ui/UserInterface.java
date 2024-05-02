@@ -37,7 +37,7 @@ public class UserInterface {
                 case "6" -> showMembersWhoHasntPaid();
                 case "7" -> showTotalIncomeForYear();
                 case "8" -> System.out.println(controller.overViewOfCompetitionMembers());
-                case "9" -> System.out.println("Mangler");
+                case "9" -> System.out.println(controller.top5Discipline());    // controller.sortingCompetitionMemberOnDiscipline();              //controller.sortingCompetitionMember();
                 case "10" -> System.out.println("\tLukker ned...");
             }
         }

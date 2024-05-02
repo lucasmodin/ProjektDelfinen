@@ -11,6 +11,7 @@ public class Member implements InterfaceComparator {
     private boolean isActive;
     private MemberAccount account;
 
+    // ***************** Constructor *********************************************** ///
     public Member(String name, int age, boolean isActive) {
         this.name = name;
         this.age = age;
@@ -20,36 +21,41 @@ public class Member implements InterfaceComparator {
         this.account.addDues();
     }
 
+    /// ************************* Getter methods **********************************////
 
     public String getName() {
         return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public int getAge() {
         return age;
     }
 
-    public void setAge(int age) {
-        this.age = age;
+    public MemberAccount getMemberAccount() {
+        return account;
     }
 
     public boolean isActive() {
         return isActive;
     }
 
+    /// ************************* Setter methods **********************************////
+
     public void setActive(boolean active) {
         isActive = active;
     }
 
-    public MemberAccount getMemberAccount() {
-        return account;
+    public void setAge(int age) {
+        this.age = age;
     }
 
-    //changed!!!
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    /// ******************** Methods to save and toString ***************************////
+
+    // -- Helper methods to get string output -- //
     @Override
     public String toString(){
         String total = "";
@@ -62,17 +68,19 @@ public class Member implements InterfaceComparator {
         return total;
     }
 
+    // -- Helper methods to save file -- //
     public String saveFormat() {
         return name + "," + age + "," + isActive;
     }
 
+
+    /// ************************* Compare methods **********************************////
     @Override
     public int getSortTime() {
         return 0;
     }
-
     @Override
-    public int getSortDiscipline(){
-        return 0;
+    public String getSortDiscipline(){
+        return "xxxx";
     }
 }
