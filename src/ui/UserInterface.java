@@ -40,8 +40,8 @@ public class UserInterface {
                 case "5" -> editClubMembers();
                 case "6" -> showMembersWhoHasntPaid();
                 case "7" -> showTotalIncomeForYear();
-                case "8" -> System.out.println(controller.overViewOfCompetitionMembers());
-                case "9" -> System.out.println(controller.top5Discipline());    // controller.sortingCompetitionMemberOnDiscipline();              //controller.sortingCompetitionMember();
+                case "8" -> overViewofAllCompetitors();
+                case "9" -> top5Discipline();
                 case "10" -> System.out.println("\tLukker ned...");
             }
         }
@@ -237,11 +237,20 @@ public class UserInterface {
 
     ///********** Træneren - Methods to handle Sports team and competitors *********************************///
 
+    public void overViewofAllCompetitors () {
+        System.out.println("Her er listen over alle medlemmer der konkurrere");
+        System.out.println(controller.overViewOfCompetitionMembers());
+    }
 
-
-
+    public void top5Discipline(){
+        System.out.println("Oversigt over de 5 bedst atlether inden for alle descipliner");
+        System.out.println(controller.top5Discipline());
+    }
 
 
     //****************** testing ************************************* //
+
+    // controller.sortingCompetitionMemberOnDiscipline();
+    // controller.sortingCompetitionMember();
 
 }
