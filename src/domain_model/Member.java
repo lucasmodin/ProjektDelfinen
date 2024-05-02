@@ -61,6 +61,6 @@ public class Member {
     }
 
     public String saveFormat() {
-        return name + "," + age + "," + isActive;
+        return name + "," + age + "," + isActive + "," + account.getBalance();
     }
 }
