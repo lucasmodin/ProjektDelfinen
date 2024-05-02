@@ -83,4 +83,6 @@ public class Member implements InterfaceComparator {
     public String getSortDiscipline(){
         return "xxxx";
     }
+
+    //****************** testing ************************************* //
 }

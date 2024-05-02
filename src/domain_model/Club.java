@@ -11,11 +11,16 @@ import java.util.List;
 
 public class Club {
 
+
+    //****************** ATTRIBUTES **************************************************//
     private ArrayList<Member> clubMembers;
 
+    // ***************** Constructor *********************************************** ///
     public Club (){
         this.clubMembers = new ArrayList<>();
     }
+
+    /// *************** Formand - methods to handle member data ********************////
 
     public void addMember (Member member){
         clubMembers.add(member);
@@ -59,6 +64,7 @@ public class Club {
         return total;
     }
 
+    /// ************* Træner - methods to handle get trainer information **********////
 
     public String overViewOfCompetitionMembers(){
         String output = "";
@@ -70,15 +76,25 @@ public class Club {
         return output;
     }
 
-    public void sortingCompetitionMember(){
-        Collections.sort(clubMembers, new Comparator<InterfaceComparator>() {
-            @Override
-            public int compare(InterfaceComparator o1, InterfaceComparator o2) {
-                return o2.getSortTime() - o1.getSortTime();
+    public String top5Discipline(){             // sortClubMembers
+        sortingCompetitionMember();
+        ArrayList<CompetitionMember> top5 = new ArrayList<>();
+        String output = "";
+        for(Member member: clubMembers) {
+            if (member instanceof CompetitionMember) {
+                top5.add((CompetitionMember) member);
             }
-        });
+        }
+
+        for(int i = 0; i <= 3; i++){
+            output += "\n" + top5.get(i).toString() + "\n";
+        }
+
+        return output;
     }
 
+
+    /// ************* Sorting methods  ******************************************////
     public void sortingCompetitionMemberOnDiscipline() {
         Collections.sort(clubMembers, new Comparator<InterfaceComparator>() {
             @Override
@@ -88,25 +104,19 @@ public class Club {
         });
     }
 
-    public String top5Discipline(){             // sortClubMembers
-        sortingCompetitionMember();
-        ArrayList<CompetitionMember> top5 = new ArrayList<>();
-        String output = "";
-            for(Member member: clubMembers) {
-                if (member instanceof CompetitionMember) {
-                    top5.add((CompetitionMember) member);
-                }
+    public void sortingCompetitionMember(){
+        Collections.sort(clubMembers, new Comparator<InterfaceComparator>() {
+            @Override
+            public int compare(InterfaceComparator o1, InterfaceComparator o2) {
+                return o2.getSortTime() - o1.getSortTime();
             }
-
-        for(int i = 0; i <= 3; i++){
-            output += "\n" + top5.get(i).toString() + "\n";
-        }
-
-        return output;
+        });
     }
 
     public void sortClubMembers(){
         clubMembers.sort(Comparator.comparing(Member::getAge));
     }
+
+    //****************** testing ************************************* //
 
 }

@@ -8,14 +8,17 @@ import java.util.Scanner;
 
 //changes!!!
 public class UserInterface {
+
+    ///********** Generate instance of club *********************************///
     Scanner input = new Scanner(System.in);
     private Controller controller;
 
     public UserInterface(){
         this.controller = new Controller();
-
     }
 
+
+    ///********** program master this keeps program in a loop and calls methods *************************///
     //changes!!!
     public void menu() throws Exception {
 
@@ -44,6 +47,7 @@ public class UserInterface {
         //controller.saveDatabse();
     }
 
+    ///********** Helper methods and print out practical information  *******************************///
     //changes!!!
     public void printLogo() throws Exception{
         String logo = "\n***--------------------------------------------------------------------------------------------------***" +
@@ -59,7 +63,7 @@ public class UserInterface {
                 + "\t\t\t\t\t\t\tVelkommen til programmet: StamDelfy\n\t\t\t\t\tFind relevante info omkring bruger stamdata og økonomi.\n";
         for(int i = 0; i < logo.length(); i++){
             System.out.print(logo.charAt(i));
-            Thread.sleep(2);
+            Thread.sleep(1);
         }
         System.out.println("\t\t\t\t\t\t\tTryk enter for at forsætte...");
         input.nextLine();
@@ -80,7 +84,8 @@ public class UserInterface {
         System.out.println("\t10. Luk programmet ned");
     }
 
-    //changes!!!
+
+    ///********** Formanden - Methods to creat Member ****************************************************///
     public void createMember(){
         System.out.println("Vil du oprette en motionist(m) eller en konkurrence svømmer(k)?");
         String userChoice = input.nextLine();
@@ -114,6 +119,7 @@ public class UserInterface {
         }
     }
 
+    ///********** Formanden - Methods to handle members ****************************************************///
     //changes!!!
     public void getClubMembers(){
         if(controller.getClubMembers().getClubMembers().isEmpty()){
@@ -216,6 +222,8 @@ public class UserInterface {
 
     }
 
+    ///********** Kasseren - Methods to handle MemberPayment account ****************************************************///
+
     public void showMembersWhoHasntPaid() {
         System.out.println("Oversigt over medlemmer der ikke har betalt:  \n");
         System.out.println(controller.displayMembersWhoOwe());
@@ -225,5 +233,7 @@ public class UserInterface {
         System.out.println("Oversigt over forventet indkomst for næste år: \n");
         System.out.println(controller.calculateTotalExpectedIncome() + " kr.");
     }
+
+    //****************** testing ************************************* //
 
 }

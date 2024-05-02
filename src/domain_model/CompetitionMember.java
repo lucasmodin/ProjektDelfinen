@@ -79,4 +79,6 @@ public class CompetitionMember extends Member implements InterfaceComparator {
         String results = getDiscipline();
         return results;
     }
+
+    //****************** testing ************************************* //
 }
