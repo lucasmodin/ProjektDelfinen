@@ -1,6 +1,8 @@
 package domain_model;
 
-public class Member {
+import Sortmethods.InterfaceComparator;
+
+public class Member implements InterfaceComparator {
 
     // ********************* Attributes *************************//
 
@@ -62,5 +64,15 @@ public class Member {
 
     public String saveFormat() {
         return name + "," + age + "," + isActive;
+    }
+
+    @Override
+    public int getSortTime() {
+        return 0;
+    }
+
+    @Override
+    public int getSortDiscipline(){
+        return 0;
     }
 }

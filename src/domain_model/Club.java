@@ -1,8 +1,11 @@
 package domain_model;
 
+import Sortmethods.ParameterComparator;
 import data_source.FileHandler;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 
 public class Club {
 
@@ -57,11 +60,15 @@ public class Club {
 
     public String overViewOfCompetitionMembers(){
         String output = "";
+        ArrayList<CompetitionMember> listsort = new ArrayList<>();
         for (Member member :clubMembers) {
             if (member instanceof CompetitionMember) {
-                output += "\n" + member.toString() + "\n";
+                listsort.add((CompetitionMember) member);
+
+                // output += "\n" + member.toString() + "\n";
             }
         }
+        listsort.sort(Comparator.comparing(CompetitionMember::getTime));
         return output;
     }
 

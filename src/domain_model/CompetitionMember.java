@@ -1,6 +1,8 @@
 package domain_model;
 
-public class CompetitionMember extends Member {
+import Sortmethods.InterfaceComparator;
+
+public class CompetitionMember extends Member implements InterfaceComparator {
 
     // ********************* Attributes *************************//
 
@@ -59,4 +61,14 @@ public class CompetitionMember extends Member {
         return getName() + "," + getAge() + "," + isActive() + "," + time + "," + discipline + "," + date;
     }
 
+    @Override
+    public int getSortTime() {
+        int results = (int) getTime();
+        return results;
+    }
+
+    @Override
+    public int getSortDiscipline(){
+        return 0;
+    }
 }

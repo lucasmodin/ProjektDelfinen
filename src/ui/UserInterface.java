@@ -41,7 +41,7 @@ public class UserInterface {
                 case "10" -> System.out.println("\tLukker ned...");
             }
         }
-        controller.saveDatabse();
+        //controller.saveDatabse();
     }
 
     //changes!!!
