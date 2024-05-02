@@ -16,8 +16,6 @@ public class UserInterface {
 
     }
 
-
-
     //changes!!!
     public void menu() throws Exception {
 
@@ -42,9 +40,7 @@ public class UserInterface {
                 case "9" -> System.out.println("Mangler");
                 case "10" -> System.out.println("\tLukker ned...");
             }
-
         }
-
         controller.saveDatabse();
     }
 
