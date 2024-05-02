@@ -240,11 +240,13 @@ public class UserInterface {
     public void overViewofAllCompetitors () {
         System.out.println("Her er listen over alle medlemmer der konkurrere");
         System.out.println(controller.overViewOfCompetitionMembers());
+        input.nextLine();
     }
 
     public void top5Discipline(){
         System.out.println("Oversigt over de 5 bedst atlether inden for alle descipliner");
         System.out.println(controller.top5Discipline());
+        input.nextLine();
     }
 
 

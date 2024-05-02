@@ -108,7 +108,7 @@ public class Club {
         Collections.sort(clubMembers, new Comparator<InterfaceComparator>() {
             @Override
             public int compare(InterfaceComparator o1, InterfaceComparator o2) {
-                return o2.getSortTime() - o1.getSortTime();
+                return o1.getSortTime() - o2.getSortTime();
             }
         });
     }
