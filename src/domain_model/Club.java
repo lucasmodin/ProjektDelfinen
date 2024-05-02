@@ -114,7 +114,7 @@ public class Club {
     }
 
     public void sortClubMembers(){
-        clubMembers.sort(Comparator.comparing(Member::getAge));
+        clubMembers.sort(Comparator.comparing(Member::getName));
     }
 
     //****************** testing ************************************* //

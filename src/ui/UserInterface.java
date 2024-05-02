@@ -23,6 +23,7 @@ public class UserInterface {
     public void menu() throws Exception {
 
         controller.loadDatabase();
+        controller.sortClubMembers();
 
 
         String userChoice = "";
@@ -222,7 +223,7 @@ public class UserInterface {
 
     }
 
-    ///********** Kasseren - Methods to handle MemberPayment account ****************************************************///
+    ///********** Kasseren - Methods to handle MemberPayment account **************************************///
 
     public void showMembersWhoHasntPaid() {
         System.out.println("Oversigt over medlemmer der ikke har betalt:  \n");
@@ -233,6 +234,13 @@ public class UserInterface {
         System.out.println("Oversigt over forventet indkomst for næste år: \n");
         System.out.println(controller.calculateTotalExpectedIncome() + " kr.");
     }
+
+    ///********** Træneren - Methods to handle Sports team and competitors *********************************///
+
+
+
+
+
 
     //****************** testing ************************************* //
 
