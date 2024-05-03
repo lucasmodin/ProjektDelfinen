@@ -2,14 +2,17 @@ package domain_model;
 
 public class Payment {
 
+
+    //****************** ATTRIBUTES **************************************************//
+
     private Club club;
 
-
+    // ***************** Constructor *********************************************** ///
     public Payment(Club club) {
         this.club = club;
-
     }
 
+    /// ************************* Calculate methods **********************************////
     public double calculateTotalExpectedIncome() {
         double totalExpectedIncome = 0.0;
         for (Member member : club.getClubMembers()){
@@ -29,7 +32,6 @@ public class Payment {
             } return totalExpectedIncome;
         }
 
-
     public String displayMembersWhoOwe() {
         String result = "";
         for (Member member : club.getClubMembers()) {
@@ -41,10 +43,6 @@ public class Payment {
         } return result;
     }
 
-
-
-
-
-
+    //****************** testing ************************************* //
 
 }

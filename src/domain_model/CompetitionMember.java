@@ -1,15 +1,16 @@
 package domain_model;
 
-public class CompetitionMember extends Member {
+import Sortmethods.InterfaceComparator;
 
-    // ********************* Attributes *************************//
+public class CompetitionMember extends Member implements InterfaceComparator {
+
+    //****************** ATTRIBUTES **************************************************//
 
     private double time;
     private String discipline;
     private String date;
 
-
-
+    // ***************** Constructor *********************************************** ///
     public CompetitionMember(String name, int age, boolean isActive, double time, String discipline, String date) {
         super(name, age, isActive);
         this.time = time;
@@ -17,31 +18,36 @@ public class CompetitionMember extends Member {
         this.date = date;
     }
 
-
+    /// ************************* Getter methods **********************************////
     public double getTime() {
         return time;
-    }
-
-    public void setTime(double time) {
-        this.time = time;
     }
 
     public String getDiscipline() {
         return discipline;
     }
 
+    public String getDate() {
+        return date;
+    }
+
+    /// ************************* Setter methods **********************************////
+
     public void setDiscipline(String discipline) {
         this.discipline = discipline;
     }
 
-    public String getDate() {
-        return date;
+    public void setTime(double time) {
+        this.time = time;
     }
 
     public void setDate(String date) {
         this.date = date;
     }
 
+    /// ******************** Methods to save and toString ***************************////
+
+    // -- Helper methods to get string output -- //
     @Override
     public String toString(){
         String total = "";
@@ -55,8 +61,24 @@ public class CompetitionMember extends Member {
         return total;
     }
 
+    // -- Helper methods to save file -- //
     public String saveFormat() {
         return getName() + "," + getAge() + "," + isActive() + "," + time + "," + discipline + "," + date + "," + super.getMemberAccount().getBalance();
     }
 
+    /// ************************* Compare methods **********************************////
+
+    @Override
+    public int getSortTime() {
+        int results = (int) getTime();
+        return results;
+    }
+
+    @Override
+    public String getSortDiscipline(){
+        String results = getDiscipline();
+        return results;
+    }
+
+    //****************** testing ************************************* //
 }
