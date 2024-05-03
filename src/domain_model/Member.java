@@ -70,7 +70,7 @@ public class Member implements InterfaceComparator {
 
     // -- Helper methods to save file -- //
     public String saveFormat() {
-        return name + "," + age + "," + isActive;
+        return name + "," + age + "," + isActive + "," + account.getBalance();
     }
 
 

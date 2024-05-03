@@ -68,7 +68,12 @@ public class FileHandler {
             Member memberData = null;
             CompetitionMember competitionMemberData = null;
 
-            if (attributes.length != 3){
+            if (attributes.length < 3) {
+                System.err.println("Malformed line");
+                continue;
+            }
+
+            if (attributes.length > 4){
                 competitionMemberData = new CompetitionMember(
                         attributes[0],
                         Integer.parseInt(attributes[1]),
@@ -76,8 +81,10 @@ public class FileHandler {
                         Double.parseDouble(attributes[3]),
                         attributes[4],
                         attributes[5]);
-                        //competitionMemberData.getMemberAccount().setBalance(Integer.parseInt(attributes[0]));
-                        //This is the method for setting the balance (change the balance attribute)
+                if (attributes.length > 6) {
+                    competitionMemberData.getMemberAccount().setBalance(Double.parseDouble(attributes[6]));
+                    //This is the method for setting the balance (change the balance attribute)
+                }
                 loadedDatabase.add(competitionMemberData);
                 //set balance for member on attribute 6
             } else {
@@ -85,6 +92,9 @@ public class FileHandler {
                 attributes[0],
                 Integer.parseInt(attributes[1]),
                 Boolean.parseBoolean(attributes[2]));
+                if (attributes.length > 3) {
+                    memberData.getMemberAccount().setBalance(Double.parseDouble(attributes[3]));
+                }
                 loadedDatabase.add(memberData);
             }
 
