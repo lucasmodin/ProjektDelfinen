@@ -43,6 +43,11 @@ public class Payment {
         } return result;
     }
 
+    public void payDues(Member memberPays, double payment) {
+        memberPays.getMemberAccount().addPayment(payment);
+    }
+
+
     //****************** testing ************************************* //
 
 }

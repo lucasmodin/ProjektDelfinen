@@ -1,9 +1,11 @@
 package ui;
 
+import Sortmethods.SwimmingDiscipline;
 import domain_model.CompetitionMember;
 import domain_model.Controller;
 import domain_model.Member;
 
+import java.sql.SQLOutput;
 import java.util.Scanner;
 
 //changes!!!
@@ -45,7 +47,7 @@ public class UserInterface {
                 case "10" -> System.out.println("\tLukker ned...");
             }
         }
-        //controller.saveDatabse();
+        controller.saveDatabse();
     }
 
     ///********** Helper methods and print out practical information  *******************************///
@@ -108,12 +110,17 @@ public class UserInterface {
             boolean isActive = input.next().equalsIgnoreCase("a");
             System.out.print("Bedste svømme resultat: ");
             double tid = input.nextDouble();
-            System.out.print("Svømmerens diciplin: ");
-            input.nextLine();
-            String diciplin = input.nextLine();
+            System.out.print("Vælg svømmerens disciplin:");
+            System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning ");
+            int index = input.nextInt();
+            SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
+            String disciplin = enumDis.getDiscipline();
+            input.nextLine(); // For at fjerne Scannerbug
             System.out.print("Datoen for resultatet: ");
             String dato = input.nextLine();
-            controller.addMember(new CompetitionMember(name, age,isActive, tid, diciplin, dato));
+            CompetitionMember newMember = new CompetitionMember(name, age,isActive, tid, disciplin, dato);
+            controller.addMember(newMember);
+            hasMemberPaid(newMember);
             input.nextLine();
         } else {
             System.out.println("forkert input");
@@ -235,6 +242,7 @@ public class UserInterface {
         System.out.println(controller.calculateTotalExpectedIncome() + " kr.");
     }
 
+
     ///********** Træneren - Methods to handle Sports team and competitors *********************************///
 
     public void overViewofAllCompetitors () {
@@ -244,13 +252,32 @@ public class UserInterface {
     }
 
     public void top5Discipline(){
-        System.out.println("Oversigt over de 5 bedst atlether inden for alle descipliner");
-        System.out.println(controller.top5Discipline());
+        System.out.println("Vælg hvilken svømme disciplin, du gerne vil se top 5 på:");
+        System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning ");
+        int index = input.nextInt();
+        SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
+        String chosendisciplin = enumDis.getDiscipline();
+
+        System.out.println("Oversigt over de 5 bedst atlether inden for " + chosendisciplin);
+        System.out.println(controller.top5Discipline(chosendisciplin));
         input.nextLine();
+
     }
 
 
     //****************** testing ************************************* //
+
+
+    // *** den her ligger under formanden *** //
+    public void hasMemberPaid(Member member){
+        System.out.println("Har medlemmet lavet en indbetaling ?");
+        System.out.println("Ja / nej");
+        String userChoice = input.nextLine();
+
+        if (userChoice.equalsIgnoreCase("ja")) {
+            member.getMemberAccount().setBalance(0);
+        }
+    }
 
     // controller.sortingCompetitionMemberOnDiscipline();
     // controller.sortingCompetitionMember();

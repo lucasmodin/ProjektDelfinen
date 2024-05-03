@@ -51,13 +51,19 @@ public class Controller {
         return payment.displayMembersWhoOwe();
     }
 
+    ///********** Kasseren - Methods to handle MemberPayment account ****************///
+
+    public void addPayment(Member member, double amount){
+        payment.payDues(member, amount);
+    }
+
     /// ************* Træner - methods to handle get trainer information **********////
 
     public String overViewOfCompetitionMembers(){
         return club.overViewOfCompetitionMembers();
     }
-    public String top5Discipline(){
-        return club.top5Discipline();
+    public String top5Discipline(String chosenDiscipline){
+        return club.top5Discipline(chosenDiscipline);
     }
 
 
@@ -66,12 +72,12 @@ public class Controller {
         club.sortClubMembers();
     }
 
-    public void sortingCompetitionMemberOnDiscipline(){
-        club.sortingCompetitionMemberOnDiscipline();
+    public void sortDiscipline(){
+        club.sortDiscipline();
     }
 
     public void sortingCompetitionMember(){
-        club.sortingCompetitionMember();
+        club.sortCompetitionTime();
     }
 
 
