@@ -5,6 +5,7 @@ import domain_model.CompetitionMember;
 import domain_model.Controller;
 import domain_model.Member;
 import java.sql.SQLOutput;
+import java.util.InputMismatchException;
 import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -45,6 +46,7 @@ public class UserInterface {
                 case "8" -> overViewofAllCompetitors();
                 case "9" -> top5Discipline();
                 case "10" -> System.out.println("\tLukker ned...");
+                default -> System.out.println("Ugyldigt input! \nVenligst indtast et tal mellem 1 og 10 for at tilgå et menupunkt \n");
             }
         }
         controller.saveDatabse();
@@ -95,8 +97,7 @@ public class UserInterface {
         if(userChoice.equals("m")){
             System.out.print("Indtast navn på bruger: ");
             String name = input.nextLine();
-            System.out.print("Indtast alder på bruger: ");
-            int age = input.nextInt();
+            int age = readIntWithValidation("Indtast alder på bruger: ", 0, 100);
             System.out.print("Indtast om bruger vil være aktiv eller passiv(a/p): ");
             boolean isActive = input.next().equalsIgnoreCase("a");
             controller.addMember(new Member(name, age, isActive));
@@ -104,15 +105,13 @@ public class UserInterface {
         } else if (userChoice.equals("k")){
             System.out.print("Indtast navn på bruger: ");
             String name = input.nextLine();
-            System.out.print("Indtast alder på bruger: ");
-            int age = input.nextInt();
+            int age = readIntWithValidation("Indtast alder på bruger: ", 0, 100);
             System.out.print("Indtast om bruger vil være aktiv eller passiv(a/p): ");
             boolean isActive = input.next().equalsIgnoreCase("a");
-            System.out.print("Bedste svømme resultat: ");
-            double tid = input.nextDouble();
+            double tid = readDoubleWithValidation("Bedste svømme resultat: ", 0, 1000);
             System.out.print("Vælg svømmerens disciplin:");
             System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning ");
-            int index = input.nextInt();
+            int index = readIntWithValidation("Indtast et hel-tal mellem 1 og 4: ", 1, 4);
             SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
             String disciplin = enumDis.getDiscipline();
             input.nextLine(); // For at fjerne Scannerbug
@@ -123,7 +122,7 @@ public class UserInterface {
             hasMemberPaid(newMember);
             input.nextLine();
         } else {
-            System.out.println("forkert input");
+            System.out.println("Ugyldigt input! indtast 'm' eller 'k' for at oprette en af de to typer medlemmer");
         }
     }
 
@@ -212,20 +211,19 @@ public class UserInterface {
                 userChoice = input.nextLine();
                 switch (userChoice) {
                     case "1" -> member.setName(input.nextLine());
-                    case "2" -> member.setAge(input.nextInt());
+                    case "2" -> member.setAge(readIntWithValidation("indtast alder ", 0, 100));
                     case "3" -> member.setActive(input.next().equalsIgnoreCase("a"));
-                    case "4" -> ((CompetitionMember) member).setTime(input.nextDouble());
+                    case "4" -> ((CompetitionMember) member).setTime(readDoubleWithValidation("Bedste svømme resultat: ",0,1000));
                     case "5" -> ((CompetitionMember) member).setDiscipline(input.nextLine());
                     case "6" -> ((CompetitionMember) member).setDate(input.nextLine());
                     case "7" -> {
                         System.out.print("Indtast navn på bruger: ");
                         member.setName(input.nextLine());
                         System.out.print("Indtast alder på bruger: ");
-                        member.setAge(input.nextInt());
+                        member.setAge(readIntWithValidation("Indtast alder på bruger: ",0, 100));
                         System.out.print("Indtast om bruger vil være aktiv eller passiv(a/p): ");
                         member.setActive(input.next().equalsIgnoreCase("a"));
-                        System.out.print("Bedste svømme resultat: ");
-                        ((CompetitionMember) member).setTime(input.nextDouble());
+                        ((CompetitionMember) member).setTime(readDoubleWithValidation("Bedste svømme resultat: ", 0, 1000));
                         System.out.print("Svømmerens diciplin: ");
                         input.nextLine();
                         ((CompetitionMember) member).setDiscipline(input.nextLine());
@@ -242,16 +240,17 @@ public class UserInterface {
                 userChoice = input.nextLine();
                 switch (userChoice) {
                     case "1" -> member.setName(input.nextLine());
-                    case "2" -> member.setAge(input.nextInt());
+                    case "2" -> member.setAge(readIntWithValidation("indtast alder ", 0, 100));
                     case "3" -> member.setActive(input.next().equalsIgnoreCase("a"));
                     case "4" -> {
                         System.out.print("Indtast navn på bruger:");
                         member.setName(input.nextLine());
-                        System.out.print("Indtast alder på bruger:");
-                        member.setAge(input.nextInt());
+                        member.setAge(readIntWithValidation("indtast alder ", 0, 100));
                         System.out.print("Indtast om bruger vil være aktiv eller passiv(a/p):");
                         member.setActive(input.next().equalsIgnoreCase("a"));
                     }
+                    default -> System.out.println("ugyldigt input - indtast venligst et hel-tal mellem 1 og 4");
+
                 }
             }
         }
@@ -282,11 +281,11 @@ public class UserInterface {
     public void top5Discipline(){
         System.out.println("Vælg hvilken svømme disciplin, du gerne vil se top 5 på:");
         System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning ");
-        int index = input.nextInt();
+        int index = readIntWithValidation("indtast et hel tal mellem 1 og 4 ", 1, 4);
         SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
         String chosendisciplin = enumDis.getDiscipline();
 
-        System.out.println("Oversigt over de 5 bedst atlether inden for " + chosendisciplin);
+        System.out.println("Oversigt over de 5 bedst atleter inden for " + chosendisciplin);
         System.out.println(controller.top5Discipline(chosendisciplin));
         input.nextLine();
 
@@ -294,6 +293,55 @@ public class UserInterface {
 
 
     //****************** testing ************************************* //
+
+    //to catch InputMismatch exception - takes min & max int parameters as boundaries.
+    private int readIntWithValidation (String prompt, int min, int max) {
+        int userInput = 0;
+        boolean flagDown = false;
+
+        while(!flagDown) {
+            try {
+                System.out.println(prompt);
+                userInput = input.nextInt();
+                input.nextLine();
+
+                if (userInput <= max && userInput >= min) {
+                    flagDown = true;
+                } else {
+                    System.out.println("Venligst indtast et tal mellem " + min + " og " + max);
+                }
+
+            } catch (InputMismatchException ime) {
+                System.out.println("Ugyldigt input! Indtast venligst et hel-tal mellem " + min + " og " + max);
+                input.nextLine();
+            }
+        } return userInput;
+    }
+
+    //to catch InputMismatch exception - takes min & max double parameters as boundaries.
+
+    private double readDoubleWithValidation (String prompt, double min, double max) {
+        double userInput = 0;
+        boolean flagDown = false;
+
+        while(!flagDown) {
+            try {
+                System.out.println(prompt);
+                userInput = input.nextDouble();
+
+
+                if (userInput <= max && userInput >= min) {
+                    flagDown = true;
+                } else {
+                    System.out.println("Venligst indtast et tal mellem " + min + " og " + max);
+                }
+
+            } catch (InputMismatchException ime) {
+                System.out.println("Ugyldigt input! Indtast venligst et hel-tal mellem " + min + " og " + max);
+                input.nextLine();
+            }
+        } return userInput;
+    }
 
 
     // *** den her ligger under formanden *** //
