@@ -4,10 +4,10 @@ import Sortmethods.SwimmingDiscipline;
 import domain_model.CompetitionMember;
 import domain_model.Controller;
 import domain_model.Member;
-
 import java.sql.SQLOutput;
 import java.util.Scanner;
-
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 //changes!!!
 public class UserInterface {
 
@@ -116,8 +116,8 @@ public class UserInterface {
             SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
             String disciplin = enumDis.getDiscipline();
             input.nextLine(); // For at fjerne Scannerbug
-            System.out.print("Datoen for resultatet: ");
-            String dato = input.nextLine();
+            System.out.print("Datoen for resultatet(ddMMyyyy): ");
+            String dato = dateValidation(input.nextLine());
             CompetitionMember newMember = new CompetitionMember(name, age,isActive, tid, disciplin, dato);
             controller.addMember(newMember);
             hasMemberPaid(newMember);
@@ -137,6 +137,34 @@ public class UserInterface {
             System.out.print(controller.getClubMembers());
         }
         input.nextLine();
+    }
+
+    //Method to format date/time to LocalDate object
+    public LocalDate parseDate(String date){
+        try {
+            DateTimeFormatter formatter = DateTimeFormatter.ofPattern("ddMMyyyy");
+            return LocalDate.parse(date, formatter);
+        } catch (Exception e){
+            return null;
+        }
+    }
+    //Method to format date to dd-MM-yyyy and for secure proper userinput for correct format.
+    public String dateValidation(String userChoice) {
+        boolean flagDown = false;
+        String dateToParse = "";
+        while (!flagDown) {
+            LocalDate date = parseDate(userChoice);
+            if (date != null) {
+                DateTimeFormatter outputFormatter = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+                dateToParse = date.format(outputFormatter);
+                flagDown = true;
+            } else {
+                System.out.println("invalid input");
+                System.out.print("Indtast en valid dato for resultatet(ddMMyyyy): ");
+                userChoice = input.nextLine();
+            }
+        }
+        return dateToParse;
     }
 
     //changes!!!
