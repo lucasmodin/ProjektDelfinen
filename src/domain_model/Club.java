@@ -76,26 +76,43 @@ public class Club {
         return output;
     }
 
-    public String top5Discipline(){             // sortClubMembers
-        sortingCompetitionMember();
+    public String top5Discipline(String choosenDiscipline){             // sortClubMembers
+        sortCompetitionTime();
         ArrayList<CompetitionMember> top5 = new ArrayList<>();
         String output = "";
         for(Member member: clubMembers) {
             if (member instanceof CompetitionMember) {
-                top5.add((CompetitionMember) member);
+                if (((CompetitionMember) member).getDiscipline().equalsIgnoreCase(choosenDiscipline)) {
+                    top5.add((CompetitionMember) member);
+                }
             }
         }
 
-        for(int i = 0; i <= 3; i++){
-            output += "\n" + top5.get(i).toString() + "\n";
-        }
+        output = top5Dis(top5);
 
         return output;
     }
 
 
+
+    // *** Helper: to get a list of top 5 competition based on discipline list with bounds *** //
+    private String top5Dis(ArrayList<CompetitionMember> comMember){
+        int top = 4;
+        String output = "";
+        if (comMember.size() < top + 1){
+            top = comMember.size() - 1;
+        }
+
+        for(int i = 0; i <= top; i++){
+            output += "\n" + comMember.get(i).toString() + "\n";
+        }
+        return output;
+    }
+
     /// ************* Sorting methods  ******************************************////
-    public void sortingCompetitionMemberOnDiscipline() {
+
+
+    public void sortDiscipline() {
         Collections.sort(clubMembers, new Comparator<InterfaceComparator>() {
             @Override
             public int compare(InterfaceComparator o1, InterfaceComparator o2) {
@@ -104,7 +121,7 @@ public class Club {
         });
     }
 
-    public void sortingCompetitionMember(){
+    public void sortCompetitionTime(){
         Collections.sort(clubMembers, new Comparator<InterfaceComparator>() {
             @Override
             public int compare(InterfaceComparator o1, InterfaceComparator o2) {
