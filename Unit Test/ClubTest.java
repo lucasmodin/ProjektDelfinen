@@ -228,6 +228,38 @@ class ClubTest {
 
     ///********** test af file handler *********************************///
 
+    @Test
+    void sortMember(){
+
+        // Arrange
+
+        Member member1 = new Member("Branco",30,true);
+        Member member2 = new CompetitionMember("Hillary Clinton",78,true,31.7,"Crawl","03-05-2024");
+        Member member3 = new CompetitionMember("Hans Jensen",19,true,92.5,"Crawl","12-05-2023");
+        Member member4 = new Member("Luna",32,true);
+
+        controller.addMember(member1);
+        controller.addMember(member2);
+        controller.addMember(member3);
+        controller.addMember(member4);
+
+        // based on time and discipline
+        controller.sortingCompetitionMember();
+
+        Member checkMember = controller.getClubMembers().findMember("Hillary Clinton");
+
+        CompetitionMember checkMember2 = (CompetitionMember) checkMember;
+
+        int timeCheck = (int) checkMember2.getTime();
+
+        assertEquals(31,timeCheck);
+
+        String timeSortCheck = controller.getClubMembers().getClubMembers().get(2).getName();
+
+        assertEquals("Hillary Clinton", timeSortCheck);
+
+    }
+
 
     // Arrange
 
