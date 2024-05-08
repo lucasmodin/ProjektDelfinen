@@ -104,7 +104,7 @@ class ClubTest {
 
     }
 
-///********** test af file handler *********************************///
+    ///********** test af file handler *********************************///
 
     @Test
     void saveMembers(){
@@ -226,7 +226,7 @@ class ClubTest {
     }
 
 
-    ///********** test af file handler *********************************///
+    ///********** test af sort Members *********************************///
 
     @Test
     void sortMember(){
