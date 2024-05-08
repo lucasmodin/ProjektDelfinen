@@ -41,7 +41,7 @@ public class UserInterface {
                 case "3" -> getClubMembers();
                 case "4" -> removeClubMembers();
                 case "5" -> editClubMembers();
-                case "6" -> showMembersWhoHasntPaid();
+                case "6" -> showMembersWhoHasntPaid(); //implement payment for members who haven't paid
                 case "7" -> showTotalIncomeForYear();
                 case "8" -> overViewofAllCompetitors();
                 case "9" -> top5Discipline();
@@ -82,7 +82,7 @@ public class UserInterface {
         System.out.println("\t3. Se liste over alle bruger i systemet");
         System.out.println("\t4. Slet bruger i systemet");
         System.out.println("\t5. redigere i bruger data");
-        System.out.println("\t6. Se bruger der mangler at betale(restance)");
+        System.out.println("\t6. Se restance og indberet betalinger");
         System.out.println("\t7. Få næste års økonomi budget");
         System.out.println("\t8. Få en oversigt af konkurrence svømmer");
         System.out.println("\t9. Se top 5 bedste svømmer i klubben");
@@ -260,8 +260,31 @@ public class UserInterface {
     ///********** Kasseren - Methods to handle MemberPayment account **************************************///
 
     public void showMembersWhoHasntPaid() {
-        System.out.println("Oversigt over medlemmer der ikke har betalt:  \n");
-        System.out.println(controller.displayMembersWhoOwe());
+        System.out.println("1. Vis oversigt over medlemmer der er i restance");
+        System.out.println("2. Indberet indbetaling for medlem");
+        int index = readIntWithValidation("Indtast et hel-tal mellem 1 og 2", 1, 2);
+
+        switch (index) {
+            case 1 ->
+                    System.out.println("Oversigt over medlemmer der ikke har betalt:  \n" + controller.displayMembersWhoOwe());
+            case 2 -> {
+                System.out.println("Indtast navnet på brugeren der har indbetalt: ");
+                String userChoice = input.nextLine();
+                if (controller.searchClubMembers(userChoice).isEmpty()) {
+                    System.out.println("Der findes ingen bruger med det navn");
+                } else {
+                    Member member = controller.findMember(userChoice);
+                    System.out.println("Du har valgt: " + member.getName());
+                    System.out.println("Indtast beløbet, som brugeren har indbetalt: ");
+                    double amount = readDoubleWithValidation("(tal mellem 1 og 100.000)",1, 100000);
+                    member.getMemberAccount().addPayment(amount);
+                    System.out.println("Du har nu indberettet en indbetaling på " + amount + " for medlemmet " + member.getName());
+                    input.nextLine();
+                }
+
+            }
+
+        }
     }
 
     public void showTotalIncomeForYear() {
@@ -357,5 +380,12 @@ public class UserInterface {
 
     // controller.sortingCompetitionMemberOnDiscipline();
     // controller.sortingCompetitionMember();
+
+
+
+
+
+
+
 
 }
