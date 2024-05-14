@@ -31,21 +31,27 @@ public class UserInterface {
 
         String userChoice = "";
         printLogo();
-        while (!userChoice.equals("10")){
+        while (!userChoice.equals("11")){
             printMenu();
             userChoice = input.nextLine();
 
             switch (userChoice){
                 case "1" -> searchClubMembers();
                 case "2" -> createMember();
+                // TODO (3) we need to expand to be able to sort by junior and senior members
                 case "3" -> getClubMembers();
                 case "4" -> removeClubMembers();
                 case "5" -> editClubMembers();
                 case "6" -> showMembersWhoHasntPaid();
                 case "7" -> showTotalIncomeForYear();
+                // TODO  (8) we need to sort after Junior/Senior members and by discipline
                 case "8" -> overViewofAllCompetitors();
+                // TODO (9) we need the trainer to be able to pick out top 5 competive swimmers for competitions
+                // TODO (9) we need to sort after junior and senior because they are in seperated competitions
                 case "9" -> top5Discipline();
-                case "10" -> System.out.println("\tLukker ned...");
+                // TODO (10) we need to show competitive members who have been to a competition and see there results
+                case "10" -> System.out.println("udvid til at vise stævne, placering og tid til konkurrence svømmer");
+                case "11" -> System.out.println("\tLukker ned...");
                 default -> System.out.println("Ugyldigt input! \nVenligst indtast et tal mellem 1 og 10 for at tilgå et menupunkt \n");
             }
         }
@@ -86,7 +92,8 @@ public class UserInterface {
         System.out.println("\t7. Få næste års økonomi budget");
         System.out.println("\t8. Få en oversigt af konkurrence svømmer");
         System.out.println("\t9. Se top 5 bedste svømmer i klubben");
-        System.out.println("\t10. Luk programmet ned");
+        System.out.println("\t10. Vis svømmer som har været til konkurrence");
+        System.out.println("\t11. Luk programmet ned");
     }
 
 
@@ -208,6 +215,8 @@ public class UserInterface {
                 System.out.println("5. Diciplin");
                 System.out.println("6. Dato");
                 System.out.println("7. Ændre alt");
+                System.out.println("8. Ændre til motionist");
+                System.out.println("9. Gå tilbage til hovedmenuen");
                 userChoice = input.nextLine();
                 switch (userChoice) {
                     case "1" -> member.setName(input.nextLine());
@@ -230,6 +239,20 @@ public class UserInterface {
                         System.out.print("Datoen for resultatet: ");
                         ((CompetitionMember) member).setDate(input.nextLine());
                     }
+                    case "8" -> {
+                        System.out.println("Vil du gerne ændre bruger til motionist. Tryk 1");
+                        userChoice = input.nextLine();
+                        if(userChoice.equals("1")){
+                            Member conversionToCreative = new Member(member.getName(), member.getAge(), member.isActive());
+                            controller.addMember(conversionToCreative);
+                            controller.removeMember(member);
+
+                        } else {
+                            System.out.println("Ugyldig input");
+                        }
+                    }
+                    case "9" -> System.out.println("vil du tilbage til hovedmenuen");
+                    default -> System.out.println("ugyldigt input - indtast venligst et hel-tal mellem 1 og 6");
                 }
             } else {
                 System.out.println("Vælg hvad du vil ændre");
@@ -237,6 +260,8 @@ public class UserInterface {
                 System.out.println("2. Alder");
                 System.out.println("3. Aktiv/Passiv");
                 System.out.println("4. Ændre alt");
+                System.out.println("5. Ændre til kompetance svømmer");
+                System.out.println("6. Gå tilbage til hovedmenuen");
                 userChoice = input.nextLine();
                 switch (userChoice) {
                     case "1" -> member.setName(input.nextLine());
@@ -249,7 +274,29 @@ public class UserInterface {
                         System.out.print("Indtast om bruger vil være aktiv eller passiv(a/p):");
                         member.setActive(input.next().equalsIgnoreCase("a"));
                     }
-                    default -> System.out.println("ugyldigt input - indtast venligst et hel-tal mellem 1 og 4");
+                    case "5" -> {
+                        System.out.println("Vil du gerne ændre til kompetance svømmer. Tryk 1");
+                        userChoice = input.nextLine();
+                        if(userChoice.equals("1")){
+                            double tid = readDoubleWithValidation("Bedste svømme resultat: ", 0, 1000);
+                            System.out.print("Vælg svømmerens disciplin:");
+                            System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning ");
+                            int index = readIntWithValidation("Indtast et hel-tal mellem 1 og 4: ", 1, 4);
+                            SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
+                            String disciplin = enumDis.getDiscipline();
+                            input.nextLine(); // For at fjerne Scannerbug
+                            System.out.print("Datoen for resultatet(ddMMyyyy): ");
+                            String dato = dateValidation(input.nextLine());
+                            CompetitionMember conversionToCompetitive = new CompetitionMember(member.getName(), member.getAge(),
+                                    member.isActive(), tid, disciplin, dato);
+                            controller.addMember(conversionToCompetitive);
+                            controller.removeMember(member);
+                        } else {
+                            System.out.println("Ugyldig input");
+                        }
+                    }
+                    case "6" -> System.out.println("vil du tilbage til hovedmenuen");
+                    default -> System.out.println("ugyldigt input - indtast venligst et hel-tal mellem 1 og 6");
 
                 }
             }
