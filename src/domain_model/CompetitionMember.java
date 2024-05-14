@@ -10,12 +10,23 @@ public class CompetitionMember extends Member implements InterfaceComparator {
     private String discipline;
     private String date;
 
+    private String competitionName;
+    private int competetionPlacement;
+    private double competitionTime;
+
     // ***************** Constructor *********************************************** ///
-    public CompetitionMember(String name, int age, boolean isActive, double time, String discipline, String date) {
+    public CompetitionMember(String name, int age, boolean isActive, double time, String discipline, String date,
+                             String competitionName, int competetionPlacement, double competitionTime) {
         super(name, age, isActive);
         this.time = time;
         this.discipline = discipline;
         this.date = date;
+
+        this.competitionName = competitionName;
+        this.competetionPlacement = competetionPlacement;
+        this.competitionTime = competitionTime;
+
+
     }
 
     /// ************************* Getter methods **********************************////
@@ -29,6 +40,20 @@ public class CompetitionMember extends Member implements InterfaceComparator {
 
     public String getDate() {
         return date;
+    }
+
+
+
+    public double getCompetitionTime() {
+        return competitionTime;
+    }
+
+    public String getCompetitionName() {
+        return competitionName;
+    }
+
+    public int getCompetetionPlacement() {
+        return competetionPlacement;
     }
 
     /// ************************* Setter methods **********************************////
@@ -57,7 +82,8 @@ public class CompetitionMember extends Member implements InterfaceComparator {
         } else {
             total += "Medlemskab: Passiv";
         }
-        total += "\nBedste tid: " + time + "\nSvømme Diciplin: " + discipline + "\nDato for resultat: " + date;
+        total += "\nBedste trænings tid: " + time + "\nSvømme Diciplin: " + discipline + "\nDato for resultat: " + date;
+        total += "\nSidst deltaget ved konkurrencen: " + competitionName + "\nBedste konkurrence tid: " + competitionTime + "\nBedste placering: " + competetionPlacement + ". pladsen";
         return total;
     }
 
