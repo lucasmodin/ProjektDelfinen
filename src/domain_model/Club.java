@@ -24,6 +24,7 @@ public class Club {
 
     public void addMember (Member member){
         clubMembers.add(member);
+
     }
 
     public void removeMember(Member member){
