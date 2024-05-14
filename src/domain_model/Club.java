@@ -77,26 +77,51 @@ public class Club {
         return output;
     }
 
-    public String top5Discipline(String choosenDiscipline){             // sortClubMembers
+    public String top5Discipline(String chosenDiscipline, String chosenAgeGroup){             // sortClubMembers
         sortCompetitionTime();
         ArrayList<CompetitionMember> top5 = new ArrayList<>();
         String output = "";
-        for(Member member: clubMembers) {
-            if (member instanceof CompetitionMember) {
-                if (((CompetitionMember) member).getDiscipline().equalsIgnoreCase(choosenDiscipline)) {
+        if (chosenAgeGroup.equals("1")) {
+            for (Member mem : getClubMembers()) {
+                if (mem instanceof CompetitionMember) {
+                    if (mem.getAge() < 18) {
+                        if(((CompetitionMember) mem).getDiscipline().equalsIgnoreCase(chosenDiscipline)){
+                            top5.add((CompetitionMember) mem);
+                        } else if (chosenDiscipline == null){
+                            top5.add((CompetitionMember) mem);
+                        }
+                    }
+                }
+            }
+        } else if (chosenAgeGroup.equals("2")) {
+            for (Member mem : getClubMembers()) {
+                if (mem instanceof CompetitionMember) {
+                    if (mem.getAge() >= 18) {
+                        if(((CompetitionMember) mem).getDiscipline().equalsIgnoreCase(chosenDiscipline)) {
+                            top5.add((CompetitionMember) mem);
+                        } else if (chosenDiscipline == null){
+                            top5.add((CompetitionMember) mem);
+                        }
+                    }
+                }
+            }
+        } else if (chosenAgeGroup.equals("3")) {
+            for(Member member: clubMembers) {
+                if (member instanceof CompetitionMember) {
                     top5.add((CompetitionMember) member);
                 }
             }
+        } else {
+            return "Ugyldig input";
         }
-
         output = top5Dis(top5);
 
         return output;
     }
 
-    public String getAgeGrups(String choice, String chosenDiscipline) {
+    public String getAgeGrups(String choiceAgeGroup, String chosenDiscipline) {
         String total = "";
-        if (choice.equals("1")) {
+        if (choiceAgeGroup.equals("1")) {
             for (Member mem : getClubMembers()) {
                 if (mem instanceof CompetitionMember) {
                     if (mem.getAge() < 18) {
@@ -108,7 +133,7 @@ public class Club {
                     }
                 }
             }
-        } else if (choice.equals("2")) {
+        } else if (choiceAgeGroup.equals("2")) {
             for (Member mem : getClubMembers()) {
                 if (mem instanceof CompetitionMember) {
                     if (mem.getAge() >= 18) {
@@ -120,7 +145,7 @@ public class Club {
                     }
                 }
             }
-        } else if (choice.equals("3")) {
+        } else if (choiceAgeGroup.equals("3")) {
             System.out.println(overViewOfCompetitionMembers());
         } else {
             return "Ugyldig input";

@@ -62,8 +62,8 @@ public class Controller {
     public String overViewOfCompetitionMembers(){
         return club.overViewOfCompetitionMembers();
     }
-    public String top5Discipline(String chosenDiscipline){
-        return club.top5Discipline(chosenDiscipline);
+    public String top5Discipline(String chosenDiscipline, String chosenAgeGroup){
+        return club.top5Discipline(chosenDiscipline, chosenAgeGroup);
     }
 
 

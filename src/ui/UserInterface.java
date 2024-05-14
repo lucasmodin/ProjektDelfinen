@@ -351,7 +351,7 @@ public class UserInterface {
         if(userChoice.equals("1")){
             System.out.println("Vælg hvilken svømme disciplin, du gerne vil se:");
             System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning \n 5. Alle");
-            int index = readIntWithValidation("indtast et hel tal mellem 1 og 4 ", 1, 5);
+            int index = readIntWithValidation("indtast et hel tal mellem 1 og 5 ", 1, 5);
             SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
             String chosendisciplin = enumDis.getDiscipline();
             System.out.println("Her er listen over alle Juniormedlemmer der konkurrere");
@@ -359,7 +359,7 @@ public class UserInterface {
         } else if(userChoice.equals("2")){
             System.out.println("Vælg hvilken svømme disciplin, du gerne vil se:");
             System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning \n 5. Alle");
-            int index = readIntWithValidation("indtast et hel tal mellem 1 og 4 ", 1, 5);
+            int index = readIntWithValidation("indtast et hel tal mellem 1 og 5 ", 1, 5);
             SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
             String chosendisciplin = enumDis.getDiscipline();
             System.out.println("Her er listen over alle Seniormedlemmer der konkurrere");
@@ -374,14 +374,33 @@ public class UserInterface {
     }
 
     public void top5Discipline(){
-        System.out.println("Vælg hvilken svømme disciplin, du gerne vil se top 5 på:");
-        System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning ");
-        int index = readIntWithValidation("indtast et hel tal mellem 1 og 4 ", 1, 4);
-        SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
-        String chosendisciplin = enumDis.getDiscipline();
-
-        System.out.println("Oversigt over de 5 bedst atleter inden for " + chosendisciplin);
-        System.out.println(controller.top5Discipline(chosendisciplin));
+        System.out.println("Hvilken aldersgrupe vil du se på?");
+        System.out.println("1. Junior");
+        System.out.println("2. Senior");
+        System.out.println("3. Alle aldersgrupper");
+        String userChoice = input.nextLine();
+        if(userChoice.equals("1")){
+            System.out.println("Vælg hvilken svømme disciplin, du gerne vil se top 5:");
+            System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning \n 5. Alle");
+            int index = readIntWithValidation("indtast et hel tal mellem 1 og 5 ", 1, 5);
+            SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
+            String chosendisciplin = enumDis.getDiscipline();
+            System.out.println("Her er top 5 over alle Juniormedlemmer der konkurrere");
+            System.out.println(controller.top5Discipline(chosendisciplin, userChoice));
+        } else if(userChoice.equals("2")){
+            System.out.println("Vælg hvilken svømme disciplin, du gerne vil se top 5:");
+            System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning \n 5. Alle");
+            int index = readIntWithValidation("indtast et hel tal mellem 1 og 5 ", 1, 5);
+            SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
+            String chosendisciplin = enumDis.getDiscipline();
+            System.out.println("Her er top 5 over alle Seniormedlemmer der konkurrere");
+            System.out.println(controller.top5Discipline(chosendisciplin, userChoice));
+        } else if(userChoice.equals("3")){
+            System.out.println("Her er top 5 over alle medlemmer der konkurrere");
+            System.out.println(controller.top5Discipline(null, userChoice));
+        } else {
+            System.out.println("Ugyldig input");
+        }
         input.nextLine();
 
     }
