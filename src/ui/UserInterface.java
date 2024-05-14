@@ -343,8 +343,33 @@ public class UserInterface {
     ///********** Træneren - Methods to handle Sports team and competitors *********************************///
 
     public void overViewofAllCompetitors () {
-        System.out.println("Her er listen over alle medlemmer der konkurrere");
-        System.out.println(controller.overViewOfCompetitionMembers());
+        System.out.println("Hvilken aldersgrupe vil du se på?");
+        System.out.println("1. Junior");
+        System.out.println("2. Senior");
+        System.out.println("3. Alle aldersgrupper");
+        String userChoice = input.nextLine();
+        if(userChoice.equals("1")){
+            System.out.println("Vælg hvilken svømme disciplin, du gerne vil se:");
+            System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning \n 5. Alle");
+            int index = readIntWithValidation("indtast et hel tal mellem 1 og 4 ", 1, 5);
+            SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
+            String chosendisciplin = enumDis.getDiscipline();
+            System.out.println("Her er listen over alle Juniormedlemmer der konkurrere");
+            System.out.println(controller.getClubMembers().getAgeGrups(userChoice, chosendisciplin));
+        } else if(userChoice.equals("2")){
+            System.out.println("Vælg hvilken svømme disciplin, du gerne vil se:");
+            System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning \n 5. Alle");
+            int index = readIntWithValidation("indtast et hel tal mellem 1 og 4 ", 1, 5);
+            SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
+            String chosendisciplin = enumDis.getDiscipline();
+            System.out.println("Her er listen over alle Seniormedlemmer der konkurrere");
+            System.out.println(controller.getClubMembers().getAgeGrups(userChoice, chosendisciplin));
+        } else if(userChoice.equals("3")){
+            System.out.println("Her er listen over alle medlemmer der konkurrere");
+            System.out.println(controller.getClubMembers().getAgeGrups(userChoice, null));
+        } else {
+            System.out.println("Ugyldig input");
+        }
         input.nextLine();
     }
 

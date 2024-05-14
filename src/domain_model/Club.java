@@ -94,7 +94,39 @@ public class Club {
         return output;
     }
 
-
+    public String getAgeGrups(String choice, String chosenDiscipline) {
+        String total = "";
+        if (choice.equals("1")) {
+            for (Member mem : getClubMembers()) {
+                if (mem instanceof CompetitionMember) {
+                    if (mem.getAge() < 18) {
+                        if(((CompetitionMember) mem).getDiscipline().equalsIgnoreCase(chosenDiscipline)){
+                            total += "\n" + mem.toString() + "\n";
+                    } else if (chosenDiscipline == null){
+                            total += "\n" + mem.toString() + "\n";
+                        }
+                    }
+                }
+            }
+        } else if (choice.equals("2")) {
+            for (Member mem : getClubMembers()) {
+                if (mem instanceof CompetitionMember) {
+                    if (mem.getAge() >= 18) {
+                        if(((CompetitionMember) mem).getDiscipline().equalsIgnoreCase(chosenDiscipline)) {
+                            total += "\n" + mem.toString() + "\n";
+                        } else if (chosenDiscipline == null){
+                            total += "\n" + mem.toString() + "\n";
+                        }
+                    }
+                }
+            }
+        } else if (choice.equals("3")) {
+            System.out.println(overViewOfCompetitionMembers());
+        } else {
+            return "Ugyldig input";
+        }
+        return total;
+    }
 
     // *** Helper: to get a list of top 5 competition based on discipline list with bounds *** //
     private String top5Dis(ArrayList<CompetitionMember> comMember){
