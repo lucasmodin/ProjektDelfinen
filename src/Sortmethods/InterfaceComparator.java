@@ -3,7 +3,7 @@ package Sortmethods;
 public interface InterfaceComparator {
 
 
-    int getSortTime();
+    double getSortTime();
 
     String getSortDiscipline();
 }

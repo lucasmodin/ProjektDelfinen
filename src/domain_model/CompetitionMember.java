@@ -9,24 +9,16 @@ public class CompetitionMember extends Member implements InterfaceComparator {
     private double time;
     private String discipline;
     private String date;
-
     private String competitionName;
-    private int competetionPlacement;
+    private int placement;
     private double competitionTime;
 
     // ***************** Constructor *********************************************** ///
-    public CompetitionMember(String name, int age, boolean isActive, double time, String discipline, String date,
-                             String competitionName, int competetionPlacement, double competitionTime) {
+    public CompetitionMember(String name, int age, boolean isActive, double time, String discipline, String date) {
         super(name, age, isActive);
         this.time = time;
         this.discipline = discipline;
         this.date = date;
-
-        this.competitionName = competitionName;
-        this.competetionPlacement = competetionPlacement;
-        this.competitionTime = competitionTime;
-
-
     }
 
     /// ************************* Getter methods **********************************////
@@ -42,21 +34,18 @@ public class CompetitionMember extends Member implements InterfaceComparator {
         return date;
     }
 
-
-
-    public double getCompetitionTime() {
-        return competitionTime;
-    }
-
     public String getCompetitionName() {
         return competitionName;
     }
 
-    public int getCompetetionPlacement() {
-        return competetionPlacement;
+    public int getPlacement() {
+        return placement;
     }
 
-    /// ************************* Setter methods **********************************////
+    public double getCompetitionTime() {
+        return competitionTime;
+    }
+/// ************************* Setter methods **********************************////
 
     public void setDiscipline(String discipline) {
         this.discipline = discipline;
@@ -70,33 +59,59 @@ public class CompetitionMember extends Member implements InterfaceComparator {
         this.date = date;
     }
 
+    public void setPlacement(int placement) {
+        this.placement = placement;
+    }
+
+    public void setCompetitionName(String competitionName) {
+        this.competitionName = competitionName;
+    }
+
+    public void setCompetitionTime(double competitionTime) {
+        this.competitionTime = competitionTime;
+    }
+
     /// ******************** Methods to save and toString ***************************////
 
     // -- Helper methods to get string output -- //
     @Override
-    public String toString(){
+    public String toString() {
         String total = "";
         total = "Navn: " + getName() + "\nAlder: " + getAge() + "\n";
-        if(isActive()){
+
+        if (isActive()) {
             total += "Medlemskab: Aktiv";
         } else {
             total += "Medlemskab: Passiv";
         }
         total += "\nBedste trænings tid: " + time + "\nSvømme Diciplin: " + discipline + "\nDato for resultat: " + date;
-        total += "\nSidst deltaget ved konkurrencen: " + competitionName + "\nBedste konkurrence tid: " + competitionTime + "\nBedste placering: " + competetionPlacement + ". pladsen";
+
+        if (competitionTime > 0) {
+            total += "\nKonkurrence Navn: " + getCompetitionName() + "\nKonkurrence placering: " + getPlacement() + "\nKonkurrence tid: " + getCompetitionTime();
+        }
         return total;
     }
 
     // -- Helper methods to save file -- //
     public String saveFormat() {
-        return getName() + "," + getAge() + "," + isActive() + "," + time + "," + discipline + "," + date + "," + super.getMemberAccount().getBalance();
+        return getName() + "," + getAge() + "," + isActive() + "," + time + "," + discipline + "," + date + "," + "," + getCompetitionName() +
+                "," + getPlacement() + "," + getCompetitionTime() + "," + super.getMemberAccount().getBalance();
     }
 
     /// ************************* Compare methods **********************************////
 
     @Override
-    public int getSortTime() {
-        int results = (int) getTime();
+    public double getSortTime() {
+        double results = 0;
+
+        if (getCompetitionTime() == 0){
+            results = getTime();
+        } else if (getCompetitionTime() > getTime()){
+            results = getTime();
+        } else {
+            results = getCompetitionTime();
+        }
+
         return results;
     }
 

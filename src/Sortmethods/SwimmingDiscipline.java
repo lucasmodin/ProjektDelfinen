@@ -5,7 +5,8 @@ public enum SwimmingDiscipline {
     BREASTSTROKE("Brystsvømning"),
     BUTTERFLY("Butterfly"),
     CRAWL("Crawl"),
-    BACKCRAWL("Rygsvømning");
+    BACKCRAWL("Rygsvømning"),
+    STOP(null);
 
     public String discipline;
 

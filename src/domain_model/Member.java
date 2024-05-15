@@ -76,7 +76,7 @@ public class Member implements InterfaceComparator {
 
     /// ************************* Compare methods **********************************////
     @Override
-    public int getSortTime() {
+    public double getSortTime() {
         return 0;
     }
     @Override
