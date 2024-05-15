@@ -106,9 +106,13 @@ public class Club {
                 }
             }
         } else if (chosenAgeGroup.equals("3")) {
-            for(Member member: clubMembers) {
-                if (member instanceof CompetitionMember) {
-                    top5.add((CompetitionMember) member);
+            for (Member mem : getClubMembers()) {
+                if (mem instanceof CompetitionMember) {
+                        if(((CompetitionMember) mem).getDiscipline().equalsIgnoreCase(chosenDiscipline)) {
+                            top5.add((CompetitionMember) mem);
+                        } else if (chosenDiscipline == null){
+                            top5.add((CompetitionMember) mem);
+                    }
                 }
             }
         } else {
@@ -146,7 +150,15 @@ public class Club {
                 }
             }
         } else if (choiceAgeGroup.equals("3")) {
-            System.out.println(overViewOfCompetitionMembers());
+            for (Member mem : getClubMembers()) {
+                if (mem instanceof CompetitionMember) {
+                    if(((CompetitionMember) mem).getDiscipline().equalsIgnoreCase(chosenDiscipline)) {
+                        total += "\n" + mem.toString() + "\n";
+                    } else if (chosenDiscipline == null){
+                        total += "\n" + mem.toString() + "\n";
+                }
+            }
+        }
         } else {
             return "Ugyldig input";
         }

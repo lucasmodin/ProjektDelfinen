@@ -96,6 +96,15 @@ public class UserInterface {
         System.out.println("\t11. Luk programmet ned");
     }
 
+    public String memberNoEqualNameHandler(String name){
+        for(Member mem : controller.getClubMembers().getClubMembers()){
+            while(mem.getName().equalsIgnoreCase(name.toLowerCase())){
+                System.out.println("Man kan ikke oprette bruger med samme navn");
+                name = input.nextLine();
+            }
+        }
+        return name;
+    }
 
     ///********** Formanden - Methods to creat Member ****************************************************///
     public void createMember(){
@@ -103,7 +112,7 @@ public class UserInterface {
         String userChoice = input.nextLine();
         if(userChoice.equals("m")){
             System.out.print("Indtast navn på bruger: ");
-            String name = input.nextLine();
+            String name = memberNoEqualNameHandler(input.nextLine());
             int age = readIntWithValidation("Indtast alder på bruger: ", 0, 100);
             System.out.print("Indtast om bruger vil være aktiv eller passiv(a/p): ");
             boolean isActive = input.next().equalsIgnoreCase("a");
@@ -111,7 +120,7 @@ public class UserInterface {
             input.nextLine();
         } else if (userChoice.equals("k")){
             System.out.print("Indtast navn på bruger: ");
-            String name = input.nextLine();
+            String name = memberNoEqualNameHandler(input.nextLine());
             int age = readIntWithValidation("Indtast alder på bruger: ", 0, 100);
             System.out.print("Indtast om bruger vil være aktiv eller passiv(a/p): ");
             boolean isActive = input.next().equalsIgnoreCase("a");
@@ -224,7 +233,10 @@ public class UserInterface {
                 System.out.println("9. Gå tilbage til hovedmenuen");
                 userChoice = input.nextLine();
                 switch (userChoice) {
-                    case "1" -> member.setName(input.nextLine());
+                    case "1" -> {
+                        String name = memberNoEqualNameHandler(input.nextLine());
+                        member.setName(name);
+                    }
                     case "2" -> member.setAge(readIntWithValidation("indtast alder ", 0, 100));
                     case "3" -> member.setActive(input.next().equalsIgnoreCase("a"));
                     case "4" -> ((CompetitionMember) member).setTime(readDoubleWithValidation("Bedste svømme resultat: ",0,1000));
@@ -232,7 +244,8 @@ public class UserInterface {
                     case "6" -> ((CompetitionMember) member).setDate(input.nextLine());
                     case "7" -> {
                         System.out.print("Indtast navn på bruger: ");
-                        member.setName(input.nextLine());
+                        String name = memberNoEqualNameHandler(input.nextLine());
+                        member.setName(name);
                         System.out.print("Indtast alder på bruger: ");
                         member.setAge(readIntWithValidation("Indtast alder på bruger: ",0, 100));
                         System.out.print("Indtast om bruger vil være aktiv eller passiv(a/p): ");
@@ -269,12 +282,16 @@ public class UserInterface {
                 System.out.println("6. Gå tilbage til hovedmenuen");
                 userChoice = input.nextLine();
                 switch (userChoice) {
-                    case "1" -> member.setName(input.nextLine());
+                    case "1" -> {
+                        String name = memberNoEqualNameHandler(input.nextLine());
+                        member.setName(name);
+                    }
                     case "2" -> member.setAge(readIntWithValidation("indtast alder ", 0, 100));
                     case "3" -> member.setActive(input.next().equalsIgnoreCase("a"));
                     case "4" -> {
                         System.out.print("Indtast navn på bruger:");
-                        member.setName(input.nextLine());
+                        String name = memberNoEqualNameHandler(input.nextLine());
+                        member.setName(name);
                         member.setAge(readIntWithValidation("indtast alder ", 0, 100));
                         System.out.print("Indtast om bruger vil være aktiv eller passiv(a/p):");
                         member.setActive(input.next().equalsIgnoreCase("a"));
@@ -379,8 +396,13 @@ public class UserInterface {
             System.out.println("Her er listen over alle Seniormedlemmer der konkurrere");
             System.out.println(controller.getClubMembers().getAgeGrups(userChoice, chosendisciplin));
         } else if(userChoice.equals("3")){
+            System.out.println("Vælg hvilken svømme disciplin, du gerne vil se:");
+            System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning \n 5. Alle");
+            int index = readIntWithValidation("indtast et hel tal mellem 1 og 5 ", 1, 5);
+            SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
+            String chosendisciplin = enumDis.getDiscipline();
             System.out.println("Her er listen over alle medlemmer der konkurrere");
-            System.out.println(controller.getClubMembers().getAgeGrups(userChoice, null));
+            System.out.println(controller.getClubMembers().getAgeGrups(userChoice, chosendisciplin));
         } else {
             System.out.println("Ugyldig input");
         }
@@ -410,8 +432,13 @@ public class UserInterface {
             System.out.println("Her er top 5 over alle Seniormedlemmer der konkurrere");
             System.out.println(controller.top5Discipline(chosendisciplin, userChoice));
         } else if(userChoice.equals("3")){
+            System.out.println("Vælg hvilken svømme disciplin, du gerne vil se top 5:");
+            System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning \n 5. Alle");
+            int index = readIntWithValidation("indtast et hel tal mellem 1 og 5 ", 1, 5);
+            SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
+            String chosendisciplin = enumDis.getDiscipline();
             System.out.println("Her er top 5 over alle medlemmer der konkurrere");
-            System.out.println(controller.top5Discipline(null, userChoice));
+            System.out.println(controller.top5Discipline(chosendisciplin, userChoice));
         } else {
             System.out.println("Ugyldig input");
         }
