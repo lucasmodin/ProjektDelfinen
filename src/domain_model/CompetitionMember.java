@@ -87,26 +87,31 @@ public class CompetitionMember extends Member implements InterfaceComparator {
         total += "\nBedste trænings tid: " + time + "\nSvømme Diciplin: " + discipline + "\nDato for resultat: " + date;
 
         if (competitionTime > 0) {
-            total += "\nKonkurrence Navn: " + getCompetitionName() + "\n Konkurrence placering: " + getPlacement() + "\nKonkurrence tid: " + getCompetitionTime();
+            total += "\nKonkurrence Navn: " + getCompetitionName() + "\nKonkurrence placering: " + getPlacement() + "\nKonkurrence tid: " + getCompetitionTime();
         }
         return total;
     }
 
     // -- Helper methods to save file -- //
     public String saveFormat() {
-        return getName() + "," + getAge() + "," + isActive() + "," + time + "," + discipline + "," + date + "," + super.getMemberAccount().getBalance() + "," + getCompetitionName() + "," + getPlacement() + "," + getCompetitionTime();
+        return getName() + "," + getAge() + "," + isActive() + "," + time + "," + discipline + "," + date + "," + "," + getCompetitionName() +
+                "," + getPlacement() + "," + getCompetitionTime() + "," + super.getMemberAccount().getBalance();
     }
 
     /// ************************* Compare methods **********************************////
 
     @Override
-    public int getSortTime() {
-        int results = 0;
-        if (getTime() > getCompetitionTime()){
-            results = (int) getCompetitionTime();
+    public double getSortTime() {
+        double results = 0;
+
+        if (getCompetitionTime() == 0){
+            results = getTime();
+        } else if (getCompetitionTime() > getTime()){
+            results = getTime();
         } else {
-            results = (int) getTime();
+            results = getCompetitionTime();
         }
+
         return results;
     }
 

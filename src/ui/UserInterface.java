@@ -31,7 +31,7 @@ public class UserInterface {
 
         String userChoice = "";
         printLogo();
-        while (!userChoice.equals("11")){
+        while (!userChoice.equals("12")){
             printMenu();
             userChoice = input.nextLine();
 
@@ -48,10 +48,11 @@ public class UserInterface {
                 case "8" -> overViewofAllCompetitors();
                 // TODO (9) we need the trainer to be able to pick out top 5 competive swimmers for competitions
                 // TODO (9) we need to sort after junior and senior because they are in seperated competitions
-                case "9" -> top5Discipline();
+                case "9" -> updateCompetitionResults();
+                case "10" -> top5Discipline();
                 // TODO (10) we need to show competitive members who have been to a competition and see there results
-                case "10" -> System.out.println("udvid til at vise stævne, placering og tid til konkurrence svømmer");
-                case "11" -> System.out.println("\tLukker ned...");
+                case "11" -> System.out.println("udvid til at vise stævne, placering og tid til konkurrence svømmer");
+                case "12" -> System.out.println("\tLukker ned...");
                 default -> System.out.println("Ugyldigt input! \nVenligst indtast et tal mellem 1 og 10 for at tilgå et menupunkt \n");
             }
         }
@@ -91,9 +92,10 @@ public class UserInterface {
         System.out.println("\t6. Se restance og indberet betalinger");
         System.out.println("\t7. Få næste års økonomi budget");
         System.out.println("\t8. Få en oversigt af konkurrence svømmer");
-        System.out.println("\t9. Se top 5 bedste svømmer i klubben");
-        System.out.println("\t10. Vis svømmer som har været til konkurrence");
-        System.out.println("\t11. Luk programmet ned");
+        System.out.println("\t9. Opdater konkurrence informationer for svømmer");
+        System.out.println("\t10. Se top 5 bedste svømmer i klubben");
+        System.out.println("\t11. Vis svømmer som har været til konkurrence");
+        System.out.println("\t12. Luk programmet ned");
     }
 
     public String memberNoEqualNameHandler(String name){
@@ -422,6 +424,7 @@ public class UserInterface {
             SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
             String chosendisciplin = enumDis.getDiscipline();
             System.out.println("Her er top 5 over alle Juniormedlemmer der konkurrere");
+            System.out.println("Sorteret efter bedste tid (både træning og konkurrencetid");
             System.out.println(controller.top5Discipline(chosendisciplin, userChoice));
         } else if(userChoice.equals("2")){
             System.out.println("Vælg hvilken svømme disciplin, du gerne vil se top 5:");
@@ -430,6 +433,7 @@ public class UserInterface {
             SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
             String chosendisciplin = enumDis.getDiscipline();
             System.out.println("Her er top 5 over alle Seniormedlemmer der konkurrere");
+            System.out.println("Sorteret efter bedste tid (både træning og konkurrencetid");
             System.out.println(controller.top5Discipline(chosendisciplin, userChoice));
         } else if(userChoice.equals("3")){
             System.out.println("Vælg hvilken svømme disciplin, du gerne vil se top 5:");
@@ -438,6 +442,7 @@ public class UserInterface {
             SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
             String chosendisciplin = enumDis.getDiscipline();
             System.out.println("Her er top 5 over alle medlemmer der konkurrere");
+            System.out.println("Sorteret efter bedste tid (både træning og konkurrencetid");
             System.out.println(controller.top5Discipline(chosendisciplin, userChoice));
         } else {
             System.out.println("Ugyldig input");
@@ -463,6 +468,28 @@ public class UserInterface {
         newMember.setPlacement(0);
         newMember.setCompetitionTime(0);
     }
+
+
+
+    public void updateCompetitionResults(){
+        System.out.println("Indtast navnet på bruger du vil redigere:");
+        String userChoice = input.nextLine();
+
+        Member member = controller.findMember(userChoice);
+
+        System.out.println("Du har valgt: " + member.getName());
+
+        setCompetitionInformation((CompetitionMember) member);
+
+        CompetitionMember member2 = (CompetitionMember) member;
+
+        System.out.println(member.getName() + "har fået sin information opdateret til: " + member2.toString());
+        input.nextLine();
+
+    }
+
+
+
 
     //****************** testing ************************************* //
 

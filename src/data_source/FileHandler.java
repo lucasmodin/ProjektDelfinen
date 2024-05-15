@@ -81,7 +81,11 @@ public class FileHandler {
                         attributes[4],
                         attributes[5]);
 
-                        competitionMemberData.getMemberAccount().setBalance(Double.parseDouble(attributes[6]));
+                        competitionMemberData.setCompetitionName(attributes[6]);
+                        competitionMemberData.setPlacement(Integer.parseInt(attributes[7]));
+                        competitionMemberData.setCompetitionTime(Double.parseDouble(attributes[8]));
+
+                        competitionMemberData.getMemberAccount().setBalance(Double.parseDouble(attributes[9]));
                         //This is the method for setting the balance (change the balance attribute)
 
                     loadedDatabase.add(competitionMemberData);
