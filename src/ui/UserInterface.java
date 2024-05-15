@@ -490,7 +490,6 @@ public class UserInterface {
 
 
 
-
     //****************** testing ************************************* //
 
     //to catch InputMismatch exception - takes min & max int parameters as boundaries.
