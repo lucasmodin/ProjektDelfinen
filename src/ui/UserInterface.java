@@ -382,8 +382,13 @@ public class UserInterface {
             System.out.println("Her er listen over alle Seniormedlemmer der konkurrere");
             System.out.println(controller.getClubMembers().getAgeGrups(userChoice, chosendisciplin));
         } else if(userChoice.equals("3")){
+            System.out.println("Vælg hvilken svømme disciplin, du gerne vil se:");
+            System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning \n 5. Alle");
+            int index = readIntWithValidation("indtast et hel tal mellem 1 og 5 ", 1, 5);
+            SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
+            String chosendisciplin = enumDis.getDiscipline();
             System.out.println("Her er listen over alle medlemmer der konkurrere");
-            System.out.println(controller.getClubMembers().getAgeGrups(userChoice, null));
+            System.out.println(controller.getClubMembers().getAgeGrups(userChoice, chosendisciplin));
         } else {
             System.out.println("Ugyldig input");
         }
@@ -413,8 +418,13 @@ public class UserInterface {
             System.out.println("Her er top 5 over alle Seniormedlemmer der konkurrere");
             System.out.println(controller.top5Discipline(chosendisciplin, userChoice));
         } else if(userChoice.equals("3")){
+            System.out.println("Vælg hvilken svømme disciplin, du gerne vil se top 5:");
+            System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning \n 5. Alle");
+            int index = readIntWithValidation("indtast et hel tal mellem 1 og 5 ", 1, 5);
+            SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
+            String chosendisciplin = enumDis.getDiscipline();
             System.out.println("Her er top 5 over alle medlemmer der konkurrere");
-            System.out.println(controller.top5Discipline(null, userChoice));
+            System.out.println(controller.top5Discipline(chosendisciplin, userChoice));
         } else {
             System.out.println("Ugyldig input");
         }
