@@ -125,6 +125,10 @@ public class UserInterface {
             System.out.print("Datoen for resultatet(ddMMyyyy): ");
             String dato = dateValidation(input.nextLine());
             CompetitionMember newMember = new CompetitionMember(name, age,isActive, tid, disciplin, dato);
+            System.out.println("Har " + name + " deltaget i en konkurrence ?");
+            System.out.println("1. Ja \n 2. Nej");
+            int choice = readIntWithValidation("Indtast et hel-tal mellem 1 og 2", 1, 2);
+            setCompetitionChoice(choice, newMember);
             controller.addMember(newMember);
             hasMemberPaid(newMember);
             input.nextLine();
@@ -154,6 +158,7 @@ public class UserInterface {
             return null;
         }
     }
+
     //Method to format date to dd-MM-yyyy and for secure proper userinput for correct format.
     public String dateValidation(String userChoice) {
         boolean flagDown = false;
@@ -304,6 +309,15 @@ public class UserInterface {
 
     }
 
+    // *** Helper metode til at sætte konkurrence tider under formanden *** //
+    public void setCompetitionChoice(int input, CompetitionMember newMember){
+        if (input == 1){
+            setCompetitionInformation(newMember);
+        } else {
+            setDefaultCompetitionInformation(newMember);
+        }
+    }
+
     ///********** Kasseren - Methods to handle MemberPayment account **************************************///
 
     public void showMembersWhoHasntPaid() {
@@ -405,6 +419,23 @@ public class UserInterface {
 
     }
 
+    public void setCompetitionInformation(CompetitionMember newMember){
+        System.out.print("Navnet på Konkurrence: ");
+        String competitionName = input.nextLine();
+        System.out.print("Placering i konkurrence: ");
+        int placement = readIntWithValidation("Indtast et heltal mellem 1 og 5", 1, 5);
+        System.out.print("Hvad var medlemmets tid?: ");
+        double competitionTime = readDoubleWithValidation("Indtast et tal med komma seperation", 0.1, 100.2);
+        newMember.setCompetitionName(competitionName);
+        newMember.setPlacement(placement);
+        newMember.setCompetitionTime(competitionTime);
+    }
+
+    public void setDefaultCompetitionInformation(CompetitionMember newMember){
+        newMember.setCompetitionName("n/a");
+        newMember.setPlacement(0);
+        newMember.setCompetitionTime(0);
+    }
 
     //****************** testing ************************************* //
 
