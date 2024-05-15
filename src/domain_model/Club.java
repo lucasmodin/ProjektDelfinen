@@ -206,4 +206,15 @@ public class Club {
 
     //****************** testing ************************************* //
 
+    public String updateCompetitionResults(Member member, String competition, int placement, double competitionTime) {
+        CompetitionMember competitionMember = (CompetitionMember) member;
+        competitionMember.setCompetitionName(competition);
+        competitionMember.setPlacement(placement);
+        competitionMember.setCompetitionTime(competitionTime);
+        return competitionMember.toString();
+    }
+
+
+
+
 }

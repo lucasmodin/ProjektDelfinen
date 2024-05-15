@@ -19,6 +19,10 @@ public class CompetitionMember extends Member implements InterfaceComparator {
         this.time = time;
         this.discipline = discipline;
         this.date = date;
+
+        this.competitionName = "n/a";
+        this.placement = 0;
+        this.competitionTime = 0.0;
     }
 
     /// ************************* Getter methods **********************************////

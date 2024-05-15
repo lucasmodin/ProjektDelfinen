@@ -329,11 +329,9 @@ public class UserInterface {
     }
 
     // *** Helper metode til at sætte konkurrence tider under formanden *** //
-    public void setCompetitionChoice(int input, CompetitionMember newMember){
+    public void setCompetitionChoice(int input, Member member){
         if (input == 1){
-            setCompetitionInformation(newMember);
-        } else {
-            setDefaultCompetitionInformation(newMember);
+            setCompetitionInformation(member);
         }
     }
 
@@ -451,41 +449,23 @@ public class UserInterface {
 
     }
 
-    public void setCompetitionInformation(CompetitionMember newMember){
+    public void setCompetitionInformation(Member member){
         System.out.print("Navnet på Konkurrence: ");
         String competitionName = input.nextLine();
         System.out.print("Placering i konkurrence: ");
         int placement = readIntWithValidation("Indtast et heltal mellem 1 og 5", 1, 5);
         System.out.print("Hvad var medlemmets tid?: ");
         double competitionTime = readDoubleWithValidation("Indtast et tal med komma seperation", 0.1, 100.2);
-        newMember.setCompetitionName(competitionName);
-        newMember.setPlacement(placement);
-        newMember.setCompetitionTime(competitionTime);
+        System.out.println(controller.updateCompetitionResults(member, competitionName, placement, competitionTime));
     }
 
-    public void setDefaultCompetitionInformation(CompetitionMember newMember){
-        newMember.setCompetitionName("n/a");
-        newMember.setPlacement(0);
-        newMember.setCompetitionTime(0);
-    }
-
-
-
-    public void updateCompetitionResults(){
-        System.out.println("Indtast navnet på bruger du vil redigere:");
+    public void updateCompetitionResults() {
+        System.out.println("Indtast navnet på den bruger du vil redigere: ");
         String userChoice = input.nextLine();
-
         Member member = controller.findMember(userChoice);
+        setCompetitionInformation(member);
 
-        System.out.println("Du har valgt: " + member.getName());
-
-        setCompetitionInformation((CompetitionMember) member);
-
-        CompetitionMember member2 = (CompetitionMember) member;
-
-        System.out.println(member.getName() + "har fået sin information opdateret til: " + member2.toString());
         input.nextLine();
-
     }
 
 

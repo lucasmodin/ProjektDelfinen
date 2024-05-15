@@ -91,4 +91,10 @@ public class Controller {
     }
 
     //****************** testing ************************************* //
+    public String  updateCompetitionResults(Member member, String competition, int placement, double competitionTime) {
+        return club.updateCompetitionResults(member, competition, placement, competitionTime);
+    }
+
+
+
 }
