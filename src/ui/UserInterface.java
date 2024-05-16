@@ -38,20 +38,16 @@ public class UserInterface {
             switch (userChoice){
                 case "1" -> searchClubMembers();
                 case "2" -> createMember();
-                // TODO (3) we need to expand to be able to sort by junior and senior members
                 case "3" -> getClubMembers();
                 case "4" -> removeClubMembers();
                 case "5" -> editClubMembers();
                 case "6" -> showMembersWhoHasntPaid(); //implement payment for members who haven't paid
                 case "7" -> showTotalIncomeForYear();
-                // TODO  (8) we need to sort after Junior/Senior members and by discipline
                 case "8" -> overViewofAllCompetitors();
-                // TODO (9) we need the trainer to be able to pick out top 5 competive swimmers for competitions
-                // TODO (9) we need to sort after junior and senior because they are in seperated competitions
                 case "9" -> updateCompetitionResults();
                 case "10" -> top5Discipline();
                 // TODO (10) we need to show competitive members who have been to a competition and see there results
-                case "11" -> System.out.println("udvid til at vise stævne, placering og tid til konkurrence svømmer");
+                case "11" -> showCompetitorsWhoHasCompeteted();
                 case "12" -> System.out.println("\tLukker ned...");
                 default -> System.out.println("Ugyldigt input! \nVenligst indtast et tal mellem 1 og 10 for at tilgå et menupunkt \n");
             }
@@ -446,7 +442,42 @@ public class UserInterface {
             System.out.println("Ugyldig input");
         }
         input.nextLine();
+    }
 
+    public void showCompetitorsWhoHasCompeteted(){
+        System.out.println("Hvilken aldersgruppe vil du se på?");
+        System.out.println("1. Junior");
+        System.out.println("2. Senior");
+        System.out.println("3. Alle");
+        String userChoice = input.nextLine();
+        if(userChoice.equals("1")){
+            System.out.println("Vælg hvilken svømme disciplin, du gerne vil se:");
+            System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning \n 5. Alle");
+            int index = readIntWithValidation("indtast et hel tal mellem 1 og 5 ", 1, 5);
+            SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
+            String chosendisciplin = enumDis.getDiscipline();
+            System.out.println("Her er listen over alle Juniormedlemmer der har været til konkurrence");
+            System.out.println(controller.getClubMembers().showCompetitorsWhoHasCompeteted(userChoice, chosendisciplin));
+        } else if(userChoice.equals("2")){
+            System.out.println("Vælg hvilken svømme disciplin, du gerne vil se:");
+            System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning \n 5. Alle");
+            int index = readIntWithValidation("indtast et hel tal mellem 1 og 5 ", 1, 5);
+            SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
+            String chosendisciplin = enumDis.getDiscipline();
+            System.out.println("Her er listen over alle Seniormedlemmer der har været til konkurrence");
+            System.out.println(controller.getClubMembers().showCompetitorsWhoHasCompeteted(userChoice, chosendisciplin));
+        } else if(userChoice.equals("3")){
+            System.out.println("Vælg hvilken svømme disciplin, du gerne vil se:");
+            System.out.println("\n 1. Bryst Svømning \n 2. Butterfly \n 3. Crawl \n 4. Rygsvømning \n 5. Alle");
+            int index = readIntWithValidation("indtast et hel tal mellem 1 og 5 ", 1, 5);
+            SwimmingDiscipline enumDis = SwimmingDiscipline.values()[index-1];
+            String chosendisciplin = enumDis.getDiscipline();
+            System.out.println("Her er listen over alle medlemmer der har været til konkurrence");
+            System.out.println(controller.getClubMembers().showCompetitorsWhoHasCompeteted(userChoice, chosendisciplin));
+        } else {
+            System.out.println("Ugyldig input");
+        }
+        input.nextLine();
     }
 
     public void setCompetitionInformation(Member member){

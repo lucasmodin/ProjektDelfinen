@@ -77,6 +77,56 @@ public class Club {
         return output;
     }
 
+    public String showCompetitorsWhoHasCompeteted(String input, String discipline){
+        String result = "";
+        if(input.equalsIgnoreCase("1")){
+            for(Member member : clubMembers) {
+                if (member instanceof CompetitionMember) {
+                    if (member.getAge() < 18) {
+                        if (!(((CompetitionMember) member).getCompetitionName().equals("n/a")) ||
+                                ((CompetitionMember) member).getPlacement() != 0 || ((CompetitionMember) member).getCompetitionTime() != 0.0) {
+                            if (((CompetitionMember) member).getDiscipline().equalsIgnoreCase(discipline)) {
+                                result += "\n" + member.toString() + "\n";
+                            } else if (discipline == null) {
+                                result += "\n" + member.toString() + "\n";
+                            }
+                        }
+                    }
+                }
+            }
+        } else if(input.equals("2")){
+            for(Member member : clubMembers){
+                if(member instanceof CompetitionMember){
+                    if(member.getAge() >= 18){
+                        if (!(((CompetitionMember) member).getCompetitionName().equals("n/a")) ||
+                                ((CompetitionMember) member).getPlacement() != 0 || ((CompetitionMember) member).getCompetitionTime() != 0.0)  {
+                            if (((CompetitionMember) member).getDiscipline().equalsIgnoreCase(discipline)) {
+                                result += "\n" + member.toString() + "\n";
+                            } else if (discipline == null) {
+                                result += "\n" + member.toString() + "\n";
+                            }
+                        }
+                    }
+                }
+            }
+        } else if(input.equals("3")) {
+            for (Member member : clubMembers) {
+                if (member instanceof CompetitionMember) {
+                    if (!(((CompetitionMember) member).getCompetitionName().equals("n/a")) ||
+                            ((CompetitionMember) member).getPlacement() != 0 || ((CompetitionMember) member).getCompetitionTime() != 0.0)  {
+                        if (((CompetitionMember) member).getDiscipline().equalsIgnoreCase(discipline)) {
+                            result += "\n" + member.toString() + "\n";
+                        } else if (discipline == null) {
+                            result += "\n" + member.toString() + "\n";
+                        }
+                    }
+                }
+            }
+        }
+
+        return result;
+    }
+
     public String top5Discipline(String chosenDiscipline, String chosenAgeGroup){             // sortClubMembers
         sortCompetitionTime();
         ArrayList<CompetitionMember> top5 = new ArrayList<>();
