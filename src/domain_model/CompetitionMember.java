@@ -98,7 +98,7 @@ public class CompetitionMember extends Member implements InterfaceComparator {
 
     // -- Helper methods to save file -- //
     public String saveFormat() {
-        return getName() + "," + getAge() + "," + isActive() + "," + time + "," + discipline + "," + date + "," + "," + getCompetitionName() +
+        return getName() + "," + getAge() + "," + isActive() + "," + time + "," + discipline + "," + date + "," + getCompetitionName() +
                 "," + getPlacement() + "," + getCompetitionTime() + "," + super.getMemberAccount().getBalance();
     }
 

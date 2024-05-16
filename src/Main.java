@@ -1,10 +1,13 @@
-import ui.UserInterface;
+import domain_model.Controller;
+import ui.*;
+
+import java.util.Scanner;
 
 //changes!!!
-public class
-Main {
+public class Main {
     public static void main(String[] args) throws Exception {
-    UserInterface ui = new UserInterface();
-    ui.menu();
+        UserInterfaceController ui = new UserInterfaceController();
+        ui.startProgram();
     }
 }
+

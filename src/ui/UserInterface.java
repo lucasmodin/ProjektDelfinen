@@ -16,7 +16,7 @@ public class UserInterface {
     Scanner input = new Scanner(System.in);
     private Controller controller;
 
-    public UserInterface(){
+    public UserInterface(Controller controller){
         this.controller = new Controller();
     }
 
@@ -46,7 +46,6 @@ public class UserInterface {
                 case "8" -> overViewofAllCompetitors();
                 case "9" -> updateCompetitionResults();
                 case "10" -> top5Discipline();
-                // TODO (10) we need to show competitive members who have been to a competition and see there results
                 case "11" -> showCompetitorsWhoHasCompeteted();
                 case "12" -> System.out.println("\tLukker ned...");
                 default -> System.out.println("Ugyldigt input! \nVenligst indtast et tal mellem 1 og 10 for at tilgå et menupunkt \n");
@@ -79,7 +78,7 @@ public class UserInterface {
 
     //changes!!!
     public void printMenu()  {
-        System.out.println("\tHoved Menu:");
+        System.out.println("\tHoved Menu: (Admin)");
         System.out.println("\t1. Søg efter en bestemt bruger");
         System.out.println("\t2. Opret bruger i systemet");
         System.out.println("\t3. Se liste over alle bruger i systemet");
@@ -191,8 +190,10 @@ public class UserInterface {
         String userCoice = input.nextLine();
         if(controller.searchClubMembers(userCoice).isEmpty()){
             System.out.println("Der findes ingen bruger med det navn");
-        } else {
+        } else if(!userCoice.isEmpty()){
             System.out.println(controller.searchClubMembers(userCoice));
+        } else {
+            System.out.println("Indtast venligst et navn for at søge");
         }
         input.nextLine();
     }
@@ -564,14 +565,12 @@ public class UserInterface {
         }
     }
 
+
     // controller.sortingCompetitionMemberOnDiscipline();
     // controller.sortingCompetitionMember();
 
 
-
-
-
-
-
-
+    public Controller getController() {
+        return controller;
+    }
 }
