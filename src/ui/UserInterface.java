@@ -78,19 +78,19 @@ public class UserInterface {
 
     //changes!!!
     public void printMenu()  {
-        System.out.println("\tHoved Menu: (Admin)");
-        System.out.println("\t1. Søg efter en bestemt bruger");
-        System.out.println("\t2. Opret bruger i systemet");
-        System.out.println("\t3. Se liste over alle bruger i systemet");
-        System.out.println("\t4. Slet bruger i systemet");
-        System.out.println("\t5. redigere i bruger data");
-        System.out.println("\t6. Se restance og indberet betalinger");
-        System.out.println("\t7. Få næste års økonomi budget");
-        System.out.println("\t8. Få en oversigt af konkurrence svømmer");
-        System.out.println("\t9. Opdater konkurrence informationer for svømmer");
-        System.out.println("\t10. Se top 5 bedste svømmer i klubben");
-        System.out.println("\t11. Vis svømmer som har været til konkurrence");
-        System.out.println("\t12. Luk programmet ned");
+        System.out.println("Ⓐ" + "\tHoved Menu: (Admin)");
+        System.out.println("\uD83D\uDD0D" + "\t1. Søg efter en bestemt bruger");
+        System.out.println("\uD83D\uDC64" + "\t2. Opret bruger i systemet");
+        System.out.println("\uD83D\uDC65" + "\t3. Se liste over alle bruger i systemet");
+        System.out.println("✀" + "\t4. Slet bruger i systemet");
+        System.out.println("✎" + "\t5. redigere i bruger data");
+        System.out.println("💰" + "\t6. Se restance og indberet betalinger");
+        System.out.println("\uD83C\uDFE6" + "\t7. Få næste års økonomi budget");
+        System.out.println("\uD83C\uDFCA" + "\t8. Få en oversigt af konkurrence svømmer");
+        System.out.println("\uD83D\uDDD8" + "\t9. Opdater konkurrence informationer for svømmer");
+        System.out.println("\uD83C\uDFC1" + "\t10. Se top 5 bedste svømmer i klubben");
+        System.out.println("\uD83C\uDFC5" + "\t11. Vis svømmer som har været til konkurrence");
+        System.out.println("🚪" + "\t12. Luk programmet ned");
     }
 
     public String memberNoEqualNameHandler(String name){

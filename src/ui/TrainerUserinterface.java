@@ -44,12 +44,12 @@ public class TrainerUserinterface extends UserInterface{
     }
     @Override
     public void printMenu()  {
-        System.out.println("\tHoved Menu: (Træner)");
-        System.out.println("\t1. redigere i bruger data");
-        System.out.println("\t2. Få en oversigt af konkurrence svømmer");
-        System.out.println("\t3. Opdater konkurrence informationer for svømmer");
-        System.out.println("\t4. Se top 5 bedste svømmer i klubben");
-        System.out.println("\t5. Vis svømmer som har været til konkurrence");
-        System.out.println("\t6. Luk programmet ned");
+        System.out.println("Ⓣ" + "\tHoved Menu: (Træner)");
+        System.out.println("✎" + "\t1. redigere i bruger data");
+        System.out.println("\uD83C\uDFCA" + "\t2. Få en oversigt af konkurrence svømmer");
+        System.out.println("\uD83D\uDDD8" + "\t3. Opdater konkurrence informationer for svømmer");
+        System.out.println("\uD83C\uDFC1" + "\t4. Se top 5 bedste svømmer i klubben");
+        System.out.println("\uD83C\uDFC5" + "\t5. Vis svømmer som har været til konkurrence");
+        System.out.println("🚪" + "\t6. Luk programmet ned");
     }
 }

@@ -44,13 +44,13 @@ public class ClubPresidentUserinterface extends UserInterface{
         }
         @Override
         public void printMenu()  {
-            System.out.println("\tHoved Menu: (Club President)");
-            System.out.println("\t1. Søg efter en bestemt bruger");
-            System.out.println("\t2. Opret bruger i systemet");
-            System.out.println("\t3. Se liste over alle bruger i systemet");
-            System.out.println("\t4. Slet bruger i systemet");
-            System.out.println("\t5. redigere i bruger data");
-            System.out.println("\t6. Luk programmet ned");
+            System.out.println("Ⓒ" + "\tHoved Menu: (Club Præsident)");
+            System.out.println("\uD83D\uDD0D" + "\t1. Søg efter en bestemt bruger");
+            System.out.println("\uD83D\uDC64" + "\t2. Opret bruger i systemet");
+            System.out.println("\uD83D\uDC65" + "\t3. Se liste over alle bruger i systemet");
+            System.out.println("✀" + "\t4. Slet bruger i systemet");
+            System.out.println("✎" + "\t5. redigere i bruger data");
+            System.out.println("🚪" + "\t6. Luk programmet ned");
         }
     }
 

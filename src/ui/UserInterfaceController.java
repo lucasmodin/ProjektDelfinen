@@ -7,15 +7,16 @@ import java.util.Scanner;
 public class UserInterfaceController {
 
     public void startProgram() throws Exception{
+        String delfin = "\uD83D\uDC2C";
         Controller controller = new Controller();
         Scanner input = new Scanner(System.in);
         System.out.println();
-        System.out.println("Velkommen til StamDelfy");
-        System.out.println("1. Login som Club president");
-        System.out.println("2. Login som Kasserer");
-        System.out.println("3, Login som Træner");
-        System.out.println("4. Login som Admin");
-        System.out.println("5. Afslut programmet");
+        System.out.println(delfin + " Velkommen til StamDelfy " + delfin);
+        System.out.println("Ⓒ" + " 1. Login som Club Præsident");
+        System.out.println("Ⓚ" + " 2. Login som Kasserer");
+        System.out.println("Ⓣ" + " 3. Login som Træner");
+        System.out.println("Ⓐ" + " 4. Login som Admin");
+        System.out.println("\uD83D\uDDD9" + " 5. Afslut programmet");
         String userChoice = "";
 
         while (!userChoice.equals("5")) {

@@ -43,11 +43,11 @@ public class TreasureUserinterface extends UserInterface{
     }
     @Override
     public void printMenu()  {
-        System.out.println("\tHoved Menu: (Kasserer)");
-        System.out.println("\t1. Søg efter en bestemt bruger");
-        System.out.println("\t2. Se liste over alle bruger i systemet");
-        System.out.println("\t3. Se restance og indberet betalinger");
-        System.out.println("\t4. Få næste års økonomi budget");
-        System.out.println("\t5. Luk programmet ned");
+        System.out.println("Ⓚ" + "\tHoved Menu: (Kasserer)");
+        System.out.println("\uD83D\uDD0D" + "\t1. Søg efter en bestemt bruger");
+        System.out.println("\uD83D\uDC65" + "\t2. Se liste over alle bruger i systemet");
+        System.out.println("💰" + "\t3. Se restance og indberet betalinger");
+        System.out.println("\uD83C\uDFE6" + "\t4. Få næste års økonomi budget");
+        System.out.println("🚪" +  "\t5. Luk programmet ned");
     }
 }
