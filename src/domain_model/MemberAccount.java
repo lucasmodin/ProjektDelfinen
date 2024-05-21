@@ -2,7 +2,7 @@ package domain_model;
 
 public class MemberAccount {
     private Member member;
-    private double balance; //Need to clarify if balance represents the amount owed or paid?
+    private double balance;
 
     public MemberAccount(Member member) {
         this.member = member;
