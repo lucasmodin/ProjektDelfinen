@@ -267,12 +267,21 @@ class ClubTest {
         // based on the member age, and if they're active or not
         Member member = new Member("John Malkovich", 67, true);
         // Act
+        Member member2 = new Member("John Travolta", 68, true);
 
         double memberBalance = member.getMemberAccount().getBalance();
         double expectedBalance = 1600 * 0.75;
 
+        double memberTwoBalance = member2.getMemberAccount().getBalance();
+
+        //Testing the addDues method by substracting the dues added in the constructor, then using the method to add them again
+        double memberTwoBalanceSubstracted = memberTwoBalance - 1200;
+        member2.getMemberAccount().addDues();
+
         // Assert
         assertEquals(memberBalance,expectedBalance);
+        assertEquals(memberTwoBalance, expectedBalance);
+        assertNotEquals(memberTwoBalance, memberTwoBalanceSubstracted);
 
     }
 
