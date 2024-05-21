@@ -260,13 +260,54 @@ class ClubTest {
 
     }
 
+    @Test
+    void addDues() {
+        // Arrange
+        //No need to add dues, as the member constructor automatically adds dues
+        // based on the member age, and if they're active or not
+        Member member = new Member("John Malkovich", 67, true);
+        // Act
+        Member member2 = new Member("John Travolta", 68, true);
 
-    // Arrange
+        double memberBalance = member.getMemberAccount().getBalance();
+        double expectedBalance = 1600 * 0.75;
 
-    // Act
+        double memberTwoBalance = member2.getMemberAccount().getBalance();
+
+        //Testing the addDues method by substracting the dues added in the constructor, then using the method to add them again
+        double memberTwoBalanceSubstracted = memberTwoBalance - 1200;
+        member2.getMemberAccount().addDues();
+
+        // Assert
+        assertEquals(memberBalance,expectedBalance);
+        assertEquals(memberTwoBalance, expectedBalance);
+        assertNotEquals(memberTwoBalance, memberTwoBalanceSubstracted);
+
+    }
+
+    @Test
+    void addPayment() {
+        //Arrange
+        Member member = new Member("John Malkovich", 67, true);
+        //Act
+        double memberBalanceBeforePayment = member.getMemberAccount().getBalance();
+        member.getMemberAccount().addPayment(1200);
+
+        double memberBalanceAfterPayment = member.getMemberAccount().getBalance();
 
 
-    // Assert
+        //Assert
+        assertNotEquals(memberBalanceBeforePayment, memberBalanceAfterPayment);
+
+
+
+
+    }
+
+
+
+
+
 
 
 
